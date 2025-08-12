@@ -1,0 +1,188 @@
+.tylt_card_product {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 5% 5% 10px 5%;
+    border-radius: $border-radius;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    position: relative;
+
+    .tylt_tags {
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        color: $white;
+        display: flex;
+        gap: 5px;
+        rotate: -2deg;
+        flex-direction: column;
+        font-family: $secondary-font-family;
+        z-index: 11;
+
+        .tylt_featured_product {
+            text-transform: uppercase;
+            background-color: $tylt-orange;
+            padding: 5px 20px;
+            border-radius: $border-radius;
+            color: $white;
+            text-align: center;
+        }
+    }
+
+    &:hover {
+        .tylt_card_image {
+            img {
+                scale: 1.1;
+                rotate: 2deg;
+            }
+        }
+    }
+
+    &.out-of-stock {
+        div, h3{
+            opacity: 0.5;
+        }
+    }
+
+    .tylt_card_image {
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: 20px;
+        overflow: hidden;
+
+        .empty {
+            display: flex;
+            background: radial-gradient(circle at 20% 30%, $tylt-blue, transparent 90%),
+                radial-gradient(circle at 80% 70%, $tylt-orange, transparent 90%),
+                #4b4b4b;
+            background-blend-mode: screen;
+            width: 100%;
+            height: 100%;
+            text-transform: uppercase;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        img {
+            transition: all 0.2s ease-in-out;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+
+    .tylt_card_name {
+        margin-top: 10px;
+        font-size: 0.8em;
+        color: $black;
+        min-height: 60px;
+        font-family: $primary-font-family;
+        text-transform: uppercase;
+        font-style: italic;
+        font-weight: 900;
+    }
+
+
+
+    .price,
+    .out-of-stock-message {
+        //price
+        display: flex;
+        align-items: center;
+        margin: auto;
+        font-size: 1.8em;
+        margin-bottom: 6px;
+        min-height: 50px;
+        justify-content: center;
+        font-family: $secondary-font-family;
+
+
+        bdi {
+            color: $tylt-blue;
+        }
+
+        del {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            >span {
+                height: 23px;
+                margin-right: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                bdi {
+                    color: rgba($black, 0.5);
+                    font-size: 0.6em;
+                    text-decoration: line-through;
+                    position: relative;
+                    top: 0.1em;
+                }
+            }
+
+        }
+
+        ins {
+            bdi {
+                color: lighten($tylt-orange, 10%);
+            }
+        }
+    }
+
+    .out-of-stock-message {
+        color: black;
+        font-size: 1em;
+        letter-spacing: 2px;
+    }
+
+    .tylt_card_actions {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        font-family: $secondary-font-family;
+        gap: 5px;
+
+        .tylt-see-more {
+            color: $tylt-orange;
+            font-size: 12px;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                letter-spacing: 1px;
+            }
+        }
+
+       a.tylt_card_add_to_cart {
+            display: flex;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            background-color: $tylt-blue;
+            color: $white;
+            font-size: 17px;
+            border-radius: $border-radius;
+            padding: 2px 24px;
+            border: 1px solid $black;
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            top: -2px;
+
+            &:hover {
+                letter-spacing: 1px;
+            }
+        }
+    }
+}

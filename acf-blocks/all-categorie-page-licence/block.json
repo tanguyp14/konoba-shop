@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "acf/all-categorie-page-licence",
+    "title": "Pour la page licence",
+    "description": "all-categorie-page-licence",
+    "icon": "carrot",
+    "category": "hatsumei",
+    "keywords": [
+        "block"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "script": ["all-categorie-page-licence"],
+    "style": "file:assets/css/style.css",
+    "supports": {
+        "align": true,
+        "html": false,
+        "multiple": false
+    }
+}

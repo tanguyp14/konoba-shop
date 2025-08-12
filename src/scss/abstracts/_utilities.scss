@@ -1,0 +1,27 @@
+// Strip units
+@function strip-units($value) {
+    @return calc($value / ($value * 0 + 1px));
+}
+
+// PX to REM
+@function rem($pxval, $base: $base-font-size) {
+
+    @if not unitless($pxval) {
+        $pxval: strip-units($pxval);
+    }
+
+    @if not unitless($base) {
+        $base: strip-units($base);
+    }
+
+    @return calc($pxval / $base) * 1rem;
+}
+
+.visually-hidden:not(:focus):not(:active) {
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}

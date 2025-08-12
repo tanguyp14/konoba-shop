@@ -1,0 +1,60 @@
+:root :where(body){
+    font-family: $primary-font-family !important;
+}
+:root :where(a:where(:not(.wp-element-button))){
+    text-decoration: none !important;
+}
+body {
+    font-family: $primary-font-family !important;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 h4,
+.h4 {
+    font-family: $secondary-font-family;
+    font-weight: 500;
+    text-align: center;
+    color: $black;
+}
+.category-title{
+    text-transform: uppercase;
+    color: $tylt-blue;
+    font-size: 2.2em;
+}
+.italic {
+    font-style: italic;
+    font-size: 12px;
+}
+
+.status {
+
+    &.Enattente,
+    &.Encours,
+    &.Attentepaiement {
+        font-style: italic;
+        color: var(--orange);
+    }
+
+    &.Termine {
+        color: var(--green);
+    }
+
+    &.Rembourse {
+        color: var(--green);
+        font-style: italic;
+    }
+
+    &.Annule,
+    &.choue {
+        color: var(--red);
+    }
+
+}

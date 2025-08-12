@@ -1,0 +1,108 @@
+.tylt_all_categories {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+    grid-template-rows: repeat(auto-fill, 200px);
+    a {
+        display: block;
+        position: relative;
+        border-radius: 10px;
+        transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        overflow: hidden;
+
+        &:hover {
+
+            img,
+            div {
+                filter: brightness(0.9);
+            }
+
+            h2 {
+                background-color: var(--grey);
+                left: 100%;
+                transform: translate(-100%, -50%);
+                width: 40%;
+                height: 100%;
+                &::after{
+                    content: '➔';
+                    position: relative;
+                }
+
+            }
+        }
+
+        img,
+        div {
+            width: 100%;
+            object-fit: cover;
+            height: 200px;
+            transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+            filter: brightness(0.5);
+        }
+
+        h2 {
+            transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5%;
+            top: 50%;
+            font-size: 19px;
+            left: 50%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            margin-bottom: 0;
+            color: var(--orange);
+            text-align: center;
+            text-transform: uppercase;
+            color: var(--white);
+
+        }
+    }
+
+    @include breakpoints(sm, max) {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(auto-fill, 150px);
+        a{
+            img, div{
+                height: 150px;
+            }
+        }
+    }
+}
+.tax-product_cat {
+    .woocommerce-products-header{
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        h1{
+            grid-column: 1;
+            grid-row: 1;
+            background-color: var(--white);
+            border-radius: 5px;
+            text-transform: uppercase;
+            margin: 0;
+            z-index: 10;
+            min-width: 250px;
+            padding: 10px;
+            align-self: flex-end;
+            transform: translate(0%, 30%);
+            border: 1px solid var(--grey-l);
+        }
+        img{
+            border-radius: 10px;
+            grid-column: 1;
+            grid-row: 1;
+        }
+        .term-description{
+            margin: 40px 0;
+            width: 100%;
+            grid-row: 2;
+            text-align: center;
+        }
+        @include breakpoints(sm, max) {
+            margin-bottom: 40px;
+        }
+    }
+}

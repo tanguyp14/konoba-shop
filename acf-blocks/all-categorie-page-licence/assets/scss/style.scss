@@ -1,0 +1,63 @@
+@import '../../../../src/scss/abstracts/all.scss';
+
+.tylt_all_categorie_liscence_page {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 10px;
+
+    @include breakpoints(sm, max) {
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+    &_card {
+        display: block;
+        min-height: 400px;
+        @include breakpoints(sm, max) {
+            min-height: 200px;
+        }
+
+        a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+            background: radial-gradient(circle at 20% 30%, $tylt-blue, transparent 90%),
+                radial-gradient(circle at 80% 70%, $tylt-orange, transparent 90%),
+                #4b4b4b;
+            border-radius: 15px;
+            overflow: hidden;
+
+            img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                z-index: 1;
+            }
+
+            h2 {
+                color: white;
+                z-index: 10;
+                transition: all 0.2s ease-in-out;
+                background-color: rgba($black, 30%);
+                width: 100%;
+                border-radius: 15px;
+                margin-bottom: 0px;
+                padding: 15px 0px;
+
+                @include breakpoints(sm, max) {
+                    font-size: 1em;
+                }
+            }
+
+            &:hover {
+                h2 {
+                    padding: 15px 0px 25px;
+                }
+            }
+        }
+    }
+}

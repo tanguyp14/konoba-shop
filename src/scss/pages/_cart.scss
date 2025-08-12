@@ -1,0 +1,48 @@
+.woocommerce {
+    max-width: 100vw;
+}
+
+.woocommerce-cart {
+    #primary {
+        max-width: 1400px;
+
+        .product-remove {
+            border-top: 0px solid;
+            a{
+                position: relative;
+                top:0;
+                right: 0;
+            }
+            @include breakpoints(sm) {
+                border-top: 0px solid transparent;
+                a{
+                    position: absolute;
+                    top: calc(50% - 12.8px);
+                    right: auto;
+                }
+            }
+        }
+
+        input,
+        button {
+            border-radius: $border-radius;
+        }
+
+        tr {
+            border: 3px solid grey;
+            td {
+                a,
+                a:visited {
+                    color: $tylt-blue;
+                }
+
+                &.product-quantity {
+                    input {
+                        border-radius: $border-radius;
+                        color: $tylt-blue;
+                    }
+                }
+            }
+        }
+    }
+}

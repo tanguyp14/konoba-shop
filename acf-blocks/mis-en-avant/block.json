@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "acf/stars",
+    "title": "Mis en avant",
+    "description": "Affiche les produits mis en avant",
+    "icon": "star-filled",
+    "category": "hatsumei",
+    "keywords": [
+        "block"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "script": ["mis-en-avant"],
+    "style": "file:assets/css/style.css",
+    "supports": {
+        "align": true,
+        "html": false,
+        "multiple": false
+    }
+}

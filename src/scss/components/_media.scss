@@ -1,0 +1,31 @@
+.icon {
+    background-size: 100%;
+    display: flex;
+    height: 20px;
+    aspect-ratio: 1/1;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+
+    &.look_pdf {
+        background-image: url('../image/look_pdf.svg');
+    }
+
+    &.download {
+        background-image: url('../image/download.svg');
+    }
+    &.user{
+        background-image: url('../image/user.svg');
+    }
+    &.log_in{
+        background-image: url('../image/log_in.svg');
+    }
+    &.log_out{
+        background-image: url('../image/log_out.svg');
+    }
+    &.cart{
+        background-image: url('../image/cart.svg');
+
+    }
+}

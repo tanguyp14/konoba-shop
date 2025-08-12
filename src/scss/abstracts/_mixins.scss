@@ -1,0 +1,62 @@
+// FontFace
+@mixin declare-font-face($font-family, $font-filename, $font-weight : normal, $font-style :normal, $font-stretch : normal) {
+
+    @font-face {
+        font-family: "#{$font-family}";
+        font-style: $font-style;
+        font-weight: $font-weight;
+        font-stretch: $font-stretch;
+        font-display: swap;
+        src:
+            url(#{$font-filename}.woff2) format("woff2"),
+            url(#{$font-filename}.woff) format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
+}
+
+// Hover Active Focus pseudo selector mixin
+@mixin hover {
+    &:hover,
+    &:active,
+    &:focus {
+        @content;
+    }
+}
+
+// Fullwidth row
+@mixin row--fullwidth($position: relative) {
+    position: $position;
+    left: 50%;
+    z-index: 1;
+    width: 100vw;
+    transform: translateX(-50%) translateY(0);
+}
+@function px($target-px) {
+  @return $target-px * 1px;
+}
+
+@function PxToRem($size) {
+  $remSize: $size / 16;
+  @return #{$remSize}rem;
+}
+
+@function variable($x) {
+  @return unquote("$" + $x);
+}
+
+@mixin b($min,$max){
+  @media (min-width: px($min)) and (max-width:  px($max)) {
+    @content;
+  }
+}
+
+@mixin m($min){
+  @media (max-width: px($min)){
+    @content;
+  }
+}
+
+@mixin p($max){
+  @media (min-width:  px($max)){
+    @content;
+  }
+}

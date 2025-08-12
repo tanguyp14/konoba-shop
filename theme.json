@@ -1,0 +1,105 @@
+{
+	"version": 2,
+	"settings": {
+		"layout": {
+			"contentSize": "1080px",
+			"wideSize": "1280px"
+		},
+		"color": {
+            "gradients": [],
+			"customGradient": false,
+            "duotone": [],
+            "customDuotone": false,
+            "custom": false,
+            "background": false,
+			"link": false,
+			"text": false,
+            "palette": [
+                {
+                    "name": "Primary",
+                    "slug": "primary",
+                    "color": "#000000"
+                },
+                {
+                    "name": "Secondary",
+                    "slug": "secondary",
+                    "color": "#000000"
+                },
+                {
+                    "name": "Accent",
+                    "slug": "accent",
+                    "color": "#000000"
+                }
+            ]
+        },
+        "typography": {
+            "lineHeight": false,
+            "dropCap": false,
+            "fontStyle": false,
+            "fontWeight": false,
+            "textTransform": false,
+            "letterSpacing": false,
+            "textDecoration": false,
+            "fluid": true,
+			"fontFamilies": [
+				{
+					"fontFamily": "'Great Vibes', handwritting",
+					"slug": "font1",
+					"name": "Great Vibes",
+					"fontFace": [
+						{
+							"fontFamily": "Great Vibes",
+							"fontWeight": "500",
+							"fontStyle": "regular",
+							"fontStretch": "regular",
+							"src": [ "file:./assets/fonts/GreatVibes-Regular.woff2" ]
+						}
+					]
+				}
+			],
+			"fontSizes": [
+				{
+                    "slug": "x-mall",
+                    "size": "13px",
+                    "name": "XS"
+                },
+				{
+                    "slug": "small",
+                    "size": "14px",
+                    "name": "S"
+                },
+                				{
+                    "slug": "medium",
+                    "size": "16px",
+                    "name": "M"
+                },
+                {
+                    "slug": "large",
+                    "size": "20px",
+                    "name": "L"
+                },
+                {
+                    "slug": "big",
+                    "size": "24px",
+                    "name": "XL"
+                },
+                {
+                    "slug": "xx-large",
+                    "size": "40px",
+                    "name": "XXL"
+                },
+                {
+                    "slug": "xxx-large",
+                    "size": "50px",
+                    "name": "XXXL"
+                }
+            ]
+		}
+	},
+    "styles": {
+        "typography": {
+            "fontFamily": "var(--wp--preset--font-family--primary-font)",
+            "fontSize": "var(--wp--preset--font-size--medium)"
+        }
+    }
+}

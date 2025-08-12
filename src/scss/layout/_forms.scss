@@ -1,0 +1,88 @@
+.woocommerce-checkout {
+    .entry-content {
+
+        div[data-shortcode="checkout"],
+        .woocommerce {
+            max-width: 1400px !important;
+            margin: auto;
+
+            label,
+            p {
+                margin-top: 20px;
+            }
+
+            h3 {
+                text-align: left;
+            }
+
+            a,
+            a:visited {
+                color: $tylt-blue;
+            }
+
+        }
+    }
+}
+
+body {
+    .formulaire {
+        background-color: $black;
+        padding: 40px;
+        width: 100%;
+        border-radius: $border-radius;
+
+
+        p {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5%;
+            justify-content: space-between;
+            align-items: center;
+            margin: auto;
+            max-width: 100%;
+            @include breakpoints(sm) {
+                max-width: 50vw;
+            }
+        }
+
+        span {
+            width: 50%;
+            margin-bottom: 30px;
+            border-radius: $border-radius;
+            overflow: hidden;
+            &:nth-child(1) {
+                width: 100%;
+                @include breakpoints(sm) {
+                    width: 45%;
+                }
+            }
+
+            &:nth-child(3) {
+                width: 100%;
+                @include breakpoints(sm) {
+                    width: 45%;
+                }
+            }
+
+            &:nth-child(5) {
+                width: 100%;
+            }
+            &.wpcf7-spinner{
+                position: absolute;
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        input {
+            width: 100%;
+            grid-column: 1;
+            border-radius: $border-radius;
+            overflow: hidden;
+        }
+
+        br {
+            display: none;
+        }
+    }
+}

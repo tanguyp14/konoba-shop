@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+a {
+    @include hover {
+        text-decoration: none;
+    }
+}
+
+a:visited {
+    color: currentColor;
+}

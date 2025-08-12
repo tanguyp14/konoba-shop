@@ -1,0 +1,138 @@
+.page-template-revendeurs {
+    #btn-formulaire {
+        margin: 20px;
+        .wp-block-button__link {
+            height: fit-content;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 100%;
+        }
+    }
+    .italic{
+        max-width: 40vw;
+        margin: auto;
+        text-align: center;
+        a{
+            text-decoration: underline;
+            &:visited{
+                color: var(--orange);
+            }
+        }
+    }
+    .under_italic{
+        font-size: 12px;
+        margin: auto;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .formulaire-revendeur {
+        background-color: rgba(125, 111, 111, 0.017);
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 80%;
+        margin: auto;
+
+        @include breakpoints(sm, max) {
+            padding: 0;
+            max-width: 100%;
+        }
+
+
+        .wpcf7 form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info_top,
+        .info_bot {
+            display: grid;
+            grid-template-columns: 1fr 20px 1fr;
+            row-gap: 10px;
+            margin-bottom: 20px;
+
+            @include breakpoints(sm, max) {
+                display: flex;
+                flex-direction: column;
+            }
+
+            h3 {
+                grid-column-start: 1;
+                grid-column-end: 4;
+                display: grid;
+            }
+
+            p {
+                display: flex;
+                width: 100%;
+                align-items: center;
+
+                label,
+                span,
+                input {
+                    width: 100%;
+                    border-radius: 5px;
+                }
+
+                &:nth-of-type(2n+1) {
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                }
+
+                &:nth-of-type(2n) {
+                    grid-column-start: 3;
+                    grid-column-end: 4;
+                }
+
+                &:last-of-type {
+                    grid-column-start: 1;
+                    grid-column-end: 4;
+
+                    label,
+                    textarea {
+                        width: 100%;
+                    }
+
+                    textarea {
+                        height: 100px;
+                        border-radius: 5px;
+
+                    }
+                }
+            }
+        }
+
+        .info_top {
+            p {
+                &:last-of-type {
+                    grid-column-start: 3;
+                    grid-column-end: 4;
+                }
+            }
+        }
+
+        p {
+            &:has(input[type="submit"]) {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        input[type="submit"] {
+            background-color: #f5f5f5;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 5px;
+            margin: auto;
+            cursor: pointer;
+            transition: 0.3s;
+
+            &:hover {
+                background-color: #e5e5e5;
+            }
+        }
+    }
+
+}
