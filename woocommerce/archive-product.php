@@ -84,12 +84,12 @@ if (is_tax('product_cat')) :
                 <?php endif; ?>
             </ul>
 
-            <div class="woocommerce-pagination">
+            <!-- <div class="woocommerce-pagination">
                 <?php
                 // Affiche la pagination WooCommerce
                 woocommerce_pagination();
                 ?>
-            </div>
+            </div> -->
             <?php woocommerce_product_loop_start();
             if (!have_posts()) {
                 if (!$is_parent && $main_category_url == '#') {

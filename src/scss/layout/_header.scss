@@ -281,7 +281,7 @@ body{
             width: 20%;
             min-width: 240px;
     
-            ul {
+            ul.menu {
                 width: 100%;
                 background-color: $tylt-orange;
                 border: 1px solid $black;
@@ -331,6 +331,7 @@ body{
                     .amount {
                         font-family: $secondary-font-family;
                         font-size: 20px;
+                        color: $white;
                     }
     
                     .count {
@@ -358,8 +359,12 @@ body{
                 }
     
                 .widget {
-                    border-radius: 10px;
+                    border-radius: 15px;
+                    overflow: hidden;
                     box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+                    border: 1px solid $black;
+                    top: 45px;
+
     
                     ul {
                         display: flex;

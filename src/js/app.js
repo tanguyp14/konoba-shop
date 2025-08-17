@@ -1,6 +1,8 @@
 (function ($) {
-    $('document').ready(function () {
+    $(window).on('load', function () {
         AOS.init();
+    });
+    $('document').ready(function () {
         document.querySelectorAll('.custom-description').forEach(container => {
             let brs = container.querySelectorAll('br');
             for (let i = brs.length - 1; i > 0; i--) {
@@ -117,57 +119,57 @@
 
 
 
-    // Fonction pour mettre à jour la barre en fonction du prix total du panier
-    function updateShippingBar() {
-        // Récupérer le prix total du panier depuis WooCommerce
-        var totalPrice = parseFloat($('span.woocommerce-Price-amount.amount').first().text().replace(/[^0-9\.,]/g, '').replace(',', '.')); // Modifiez le sélecteur en fonction de votre structure HTML
+    // // Fonction pour mettre à jour la barre en fonction du prix total du panier
+    // function updateShippingBar() {
+    //     // Récupérer le prix total du panier depuis WooCommerce
+    //     var totalPrice = parseFloat($('span.woocommerce-Price-amount.amount').first().text().replace(/[^0-9\.,]/g, '').replace(',', '.')); // Modifiez le sélecteur en fonction de votre structure HTML
 
-        // Sélectionnez la balise où vous voulez afficher la barre
-        var shippingBar = document.getElementById("shipping-bar");
+    //     // Sélectionnez la balise où vous voulez afficher la barre
+    //     var shippingBar = document.getElementById("shipping-bar");
 
-        // Seuil pour la livraison gratuite
-        var freeShippingThreshold = 100;
+    //     // Seuil pour la livraison gratuite
+    //     var freeShippingThreshold = 100;
 
-        // Calculez le montant restant pour bénéficier de la livraison gratuite
-        var remainingForFreeShipping = freeShippingThreshold - totalPrice;
+    //     // Calculez le montant restant pour bénéficier de la livraison gratuite
+    //     var remainingForFreeShipping = freeShippingThreshold - totalPrice;
 
-        // Vérifiez si le montant total du panier atteint le seuil de livraison gratuite
-        if (totalPrice >= freeShippingThreshold) {
-            shippingBar.innerHTML = "Vous bénéficiez de la livraison gratuite !";
-        } else {
-            shippingBar.innerHTML = "Plus que <span>" + remainingForFreeShipping.toFixed(1) + "€</span> avant la livraison gratuite !";
-        }
-    }
+    //     // Vérifiez si le montant total du panier atteint le seuil de livraison gratuite
+    //     if (totalPrice >= freeShippingThreshold) {
+    //         shippingBar.innerHTML = "Vous bénéficiez de la livraison gratuite !";
+    //     } else {
+    //         shippingBar.innerHTML = "Plus que <span>" + remainingForFreeShipping.toFixed(1) + "€</span> avant la livraison gratuite !";
+    //     }
+    // }
 
-    // Écoutez l'événement de mise à jour du panier de WooCommerce
-    $(document).ready(function () {
-        // Mise à jour initiale de la barre de livraison
-        updateShippingBar();
+    // // Écoutez l'événement de mise à jour du panier de WooCommerce
+    // $(document).ready(function () {
+    //     // Mise à jour initiale de la barre de livraison
+    //     updateShippingBar();
 
-        $(document.body).on('updated_cart_totals', function () {
-            // Mise à jour de la barre de livraison après la mise à jour du panier
-            setTimeout(function () {
-                // Mise à jour de la barre de livraison après la mise à jour du panier
-                updateShippingBar();
-            }, 500); // 100 millisecondes de délai, ajustez si nécessaire
-        });
+    //     $(document.body).on('updated_cart_totals', function () {
+    //         // Mise à jour de la barre de livraison après la mise à jour du panier
+    //         setTimeout(function () {
+    //             // Mise à jour de la barre de livraison après la mise à jour du panier
+    //             updateShippingBar();
+    //         }, 500); // 100 millisecondes de délai, ajustez si nécessaire
+    //     });
 
-        // Écoutez l'événement de clic sur le bouton "Ajouter au panier"
-        $(document.body).on('click', '.add_to_cart_button', function () {
-            setTimeout(function () {
-                // Mise à jour de la barre de livraison après la mise à jour du panier
-                updateShippingBar();
-            }, 500); // 100 millisecondes de délai, ajustez si nécessaire
-        });
-        $(document.body).on('click', '.remove_from_cart_button', function () {
-            setTimeout(function () {
-                // Mise à jour de la barre de livraison après la mise à jour du panier
-                updateShippingBar();
-            }, 500); // 100 millisecondes de délai, ajustez si nécessaire
-        });
+    //     // Écoutez l'événement de clic sur le bouton "Ajouter au panier"
+    //     $(document.body).on('click', '.add_to_cart_button', function () {
+    //         setTimeout(function () {
+    //             // Mise à jour de la barre de livraison après la mise à jour du panier
+    //             updateShippingBar();
+    //         }, 500); // 100 millisecondes de délai, ajustez si nécessaire
+    //     });
+    //     $(document.body).on('click', '.remove_from_cart_button', function () {
+    //         setTimeout(function () {
+    //             // Mise à jour de la barre de livraison après la mise à jour du panier
+    //             updateShippingBar();
+    //         }, 500); // 100 millisecondes de délai, ajustez si nécessaire
+    //     });
 
 
-    });
+    // });
 
     $(document).ready(function () {
         // Créer une fonction qui ajoute un champ texte avec des boutons + et - dans une div avant chaque "a .add_to_cart_button"

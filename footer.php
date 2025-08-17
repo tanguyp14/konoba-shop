@@ -1,3 +1,4 @@
+</div>
 <footer>
     <div class="left">
         <div class="search">

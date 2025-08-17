@@ -88,19 +88,8 @@ function custom_related_products() {
 
 // Modification de la page produit-single
 add_action( 'woocommerce_single_product_summary', 'afficher_categories_au_desus_du_titre', 0 );
-// add_action( 'woocommerce_single_product_summary', 'afficher_description_sous_stock', 35 );
-add_filter( 'wc_product_sku_enabled', '__return_false' );
 remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
 add_filter( 'woocommerce_product_tabs', '__return_empty_array' );
-
-// function afficher_description_sous_stock() {
-//     global $product;
-//     if ( $product->get_description() ) {
-//         echo '<div class="woocommerce-product-description">';
-//         echo wp_kses_post( $product->get_description() );
-//         echo '</div>';
-//     }
-// }
 
 add_action( 'woocommerce_single_product_summary', 'afficher_description_complete_sous_titre', 6 );
 function afficher_description_complete_sous_titre() {

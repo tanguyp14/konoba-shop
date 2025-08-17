@@ -24,6 +24,14 @@ body:has(.site-header.stick:not(.hidden)) {
         max-width: 100vw;
     }
 }
+.woocommerce-checkout{
+    .tylt_max{
+        max-width: 50vw;
+        @include breakpoints(sm, max){
+            max-width: 90vw;
+        }
+    }
+}
 
 .woocommerce:has(>.woocommerce-message),
 .woocommerce:has(>.woocommerce-error) {

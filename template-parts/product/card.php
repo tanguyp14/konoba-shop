@@ -2,7 +2,7 @@
 global $product; 
 $time = get_query_var('time'); 
 ?>
-<li class="tylt_card_product <?php echo !$product->is_in_stock() ? 'out-of-stock' : ''; ?>" data-aos="fade-up" data-aos-delay="<?php echo $time ?>" >
+<li class="tylt_card_product <?php echo !$product->is_in_stock() ? 'out-of-stock' : ''; ?>" data-aos="fade-up" data-aos-delay="<?php echo $time ?>" data-aos-anchor-placement="top-bottom">
     <div class="tylt_tags">
         <?php if ($product->is_featured()) : ?>
             <div class="tylt_featured_product">Nouveauté</div>

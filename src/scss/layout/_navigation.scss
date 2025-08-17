@@ -94,9 +94,10 @@ li {
         padding: 15px 25px;
         width: fit-content;
         font-family: $secondary-font-family;
-         color: $black;
+        color: $black;
         transition: all 0.2s ease-in-out;
         animation: tilt infinite 10s ease-in-out;
+        transform-origin: center right;
 
         &:visited {
             color: $black;
@@ -127,7 +128,8 @@ li {
         font-family: $secondary-font-family;
         text-transform: uppercase;
         transition: all 0.2s ease-in-out;
-        &:hover{
+
+        &:hover {
             margin-left: 30px;
         }
 
@@ -138,6 +140,7 @@ li {
 
         a {
             color: $tylt-orange;
+
             &:visited {
                 color: $tylt-orange;
 
@@ -206,19 +209,38 @@ div.woocommerce-pagination {
     align-items: center;
     display: flex;
     justify-content: center;
+    border: none;
+nav{
+    border: none;
+}
+    ul.page-numbers {
+        background-color: transparent;
+        font-family: $secondary-font-family;
 
-    .page-numbers {
         li {
-            a {
-                border-radius: $border-radius;
+            background-color: transparent;
+            width: 15px;
+
+            span, a.page-numbers,a.page-numbers:not(.current),a.page-numbers.prev, a.page-numbers.next {
+                background-color: transparent;
+                color: $black;
+                padding: 0;
+                padding-left: 0;
+                padding-right: 0;
+                width: 15px;
+                &:hover{
+                    background-color: transparent;
+                    color: $tylt-jaune;
+                }
+                
             }
 
             span.page-numbers.current {
-                background-color: $tylt-orange;
-                color: $white;
-                border-radius: $border-radius;
-
+                color: $tylt-orange;
+                background-color: transparent;
+                padding: 0;
             }
+
         }
     }
 }
@@ -243,17 +265,16 @@ div.woocommerce-pagination {
 
 
 @keyframes tilt {
-    0%{
-        rotate: 0deg;
+    0% {
+        scale: 1;
     }
-    5%{
-        rotate: -2deg;
+
+    5% {
+        scale: 1.05;
     }
-    10%{
-        rotate: 2deg;
+
+    10% {
+         scale: 1;
     }
-    15%{
-        rotate: 0deg;
-    }
-    
+
 }

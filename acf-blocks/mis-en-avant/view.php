@@ -6,7 +6,6 @@ extract($fields);
     <h2 class="category-title"><?php echo esc_html($titre); ?></h2>
     <ul class="products columns-<?php echo $number_of_products; ?>">
         <?php
-
         $args = array(
             'post_type' => 'product',
             'posts_per_page' => $number_of_products,
@@ -21,6 +20,13 @@ extract($fields);
             'orderby' => 'modified',
             'order'   => 'DESC'
         );
+        if (!empty($only_in_stock)) {
+            $args['meta_query'][] = array(
+                'key'     => '_stock_status',
+                'value'   => 'instock',
+                'compare' => '='
+            );
+        }
 
         $featured_query = new WP_Query($args);
 
