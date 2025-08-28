@@ -4,7 +4,7 @@ extract($fields);
 ?>
 <section class="tylt_one_categorie">
     <h2 class="category-title"><?php echo esc_html($titre); ?></h2>
-    <ul class="products columns-4">
+    <ul class="products columns-<?php echo $nombre_de_produits_a_afficher; ?>">
 <?php
 
 $args = array(

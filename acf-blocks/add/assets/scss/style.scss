@@ -1,63 +1,87 @@
 @import '../../../../src/scss/abstracts/all.scss';
 
-.tylt_adds {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-    @include breakpoints(sm) {
-        flex-direction: row;
-    }
-.contact{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    a{
-        min-width: 140px;
+.tylt_blocks {
+    width: 100vw;
+    margin-left: calc(0px - (5px + 5vw));
+
+    .tylt_blocks_bg {
+        position: absolute;
+        height: 100%;
         width: 100%;
-        max-width: 330px;
-    }
-}
-    .lob-item {
-        width: 100%;
-        @include breakpoints(sm) {
-            width: 30%;
+        object-fit: cover;
+        object-position: left center;
+
+        @include breakpoints(sm, max) {
+            object-fit: cover;
+            object-position: center center;
         }
+    }
+
+    &_container {
+        padding: 14vw 13vw 6vw 13vw;
+        gap: 20px;
+        flex-wrap: wrap;
         display: flex;
-        flex-direction: column;
-        border-radius: $border-radius;
-        background-color: $black;
-        justify-content: center;
-        align-items: center;
-        padding: 30px;
-        text-transform: uppercase;
+        flex-direction: row;
+        justify-content: space-between;
 
-        img {
-            max-width: 50px;
-            height: 50px;
+        @include breakpoints(sm, max) {
+            flex-direction: column;
+            gap: 40px;
+            padding: 80px 20px;
         }
 
-        h3 {
-            min-height: 72px;
-            text-align: center;
+        &_item {
+            position: relative;
+            z-index: 10;
+            width: 30%;
+
+            @include breakpoints(sm, max) {
+                width: 100%;
+            }
+
             display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            max-width: 300px;
-        }
+            text-transform: uppercase;
 
-        h3,
-        p {
-            color: $white;
-            margin: 0;
-            padding: 0;
+            img {
+                max-height: 137px;
+                height: 60%;
+                animation: tincle 10s ease-in-out infinite;
 
-        }
+                @include breakpoints(sm, max) {
+                    max-height: 70px;
+                }
+            }
 
-        p {
-            font-size: 0.7em;
+            h3 {
+                min-height: 72px;
+                text-align: center;
+                display: flex;
+                align-items: center;
+                max-width: 300px;
+                color: $white;
+                padding: 0;
+                margin: 0;
+            }
         }
     }
 
+
+}
+
+@keyframes tincle {
+    0%{
+        rotate: 0deg;
+    }
+    20%{
+        rotate: -5deg;
+    }
+
+    25%{
+        rotate: 0deg;
+    }
+    
 }

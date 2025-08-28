@@ -80,9 +80,10 @@ body{
                 max-width: 180px;
             }
     
-            nav {
+            nav#site-navigation {
                 margin: 0;
                 width: 100%;
+                margin-left: 20px;
     
                 .menu-principal-container {
                     ul {
@@ -92,7 +93,10 @@ body{
     
                         li {
                             text-transform: uppercase;
-                            font-size: clamp(1em, 12px, 20px);
+                            font-size: 15px;
+                            @include breakpoints(xlg, max) {
+                                font-size: 12px;
+                            }
     
     
     
@@ -436,8 +440,6 @@ body{
             justify-content: space-between;
             padding: 10px;
             top: 0px;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
             margin-right: 0px;
     
             &.stick {
@@ -574,16 +576,16 @@ menu-header {
 //Sous-Menu Bottom Commerce
 sub-header {
     position: fixed;
-    bottom: 5px;
     height: 60px;
-    width: calc(100vw - 10px);
+    width: 100%;
     background-color: $tylt-blue;
-    border-radius: $border-radius;
-    left: 5px;
+    border-top-left-radius: $border-radius;
+    border-top-right-radius: $border-radius;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
+    bottom: 0;
 
     &.hidden {
         display: none;
@@ -600,10 +602,15 @@ sub-header {
 
 
         .tylt-button {
-            width: 60%;
+            width: fit-content;
             position: relative;
             color: $white;
             font-family: $secondary-font-family;
+            text-align: center;
+            background-color: $tylt-jaune;
+            border: 1px solid $black;
+            padding: 5px 20px;
+            border-radius: $border-radius;
 
             .count {
                 position: absolute;

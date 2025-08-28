@@ -4,85 +4,8 @@
     "fields": [
         {
             "key": "field_65c10af850c55",
-            "label": "Liste Mobile",
-            "name": "liste_dimages_mobile",
-            "aria-label": "",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "relevanssi_exclude": 0,
-            "layout": "table",
-            "pagination": 0,
-            "min": 0,
-            "max": 0,
-            "collapsed": "",
-            "button_label": "Ajouter un élément",
-            "rows_per_page": 20,
-            "sub_fields": [
-                {
-                    "key": "field_6666d100e5333",
-                    "label": "Banner 500x500",
-                    "name": "banner",
-                    "aria-label": "",
-                    "type": "image",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "return_format": "id",
-                    "library": "all",
-                    "min_width": "",
-                    "min_height": "",
-                    "min_size": "",
-                    "max_width": "",
-                    "max_height": "",
-                    "max_size": "",
-                    "mime_types": "",
-                    "preview_size": "medium",
-                    "parent_repeater": "field_65c10af850c55"
-                },
-                {
-                    "key": "field_6666d12be5334",
-                    "label": "Lien Mobile",
-                    "name": "lien_mobile",
-                    "aria-label": "",
-                    "type": "url",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": [
-                        [
-                            {
-                                "field": "field_6666d100e5333",
-                                "operator": "!=empty"
-                            }
-                        ]
-                    ],
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "relevanssi_exclude": 0,
-                    "default_value": "",
-                    "placeholder": "",
-                    "parent_repeater": "field_65c10af850c55"
-                }
-            ]
-        },
-        {
-            "key": "field_6617de0a9b932",
-            "label": "Liste Desk",
-            "name": "liste_dimages_desk",
+            "label": "Slider",
+            "name": "slider",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
@@ -102,8 +25,8 @@
             "rows_per_page": 20,
             "sub_fields": [
                 {
-                    "key": "field_6666d1a62f57a",
-                    "label": "Banner desk  1920x700",
+                    "key": "field_68a20f16d266e",
+                    "label": "Banner 1920x360",
                     "name": "banner_desk",
                     "aria-label": "",
                     "type": "image",
@@ -124,13 +47,41 @@
                     "max_height": "",
                     "max_size": "",
                     "mime_types": "",
+                    "allow_in_bindings": 1,
                     "preview_size": "medium",
-                    "parent_repeater": "field_6617de0a9b932"
+                    "parent_repeater": "field_65c10af850c55"
                 },
                 {
-                    "key": "field_6666d19b2f579",
-                    "label": "Lien Desk",
-                    "name": "lien_desk",
+                    "key": "field_6666d100e5333",
+                    "label": "Banner 500x600",
+                    "name": "banner_mobile",
+                    "aria-label": "",
+                    "type": "image",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "return_format": "id",
+                    "library": "all",
+                    "min_width": "",
+                    "min_height": "",
+                    "min_size": "",
+                    "max_width": "",
+                    "max_height": "",
+                    "max_size": "",
+                    "mime_types": "",
+                    "allow_in_bindings": 1,
+                    "preview_size": "medium",
+                    "parent_repeater": "field_65c10af850c55"
+                },
+                {
+                    "key": "field_6666d12be5334",
+                    "label": "Lien",
+                    "name": "lien",
                     "aria-label": "",
                     "type": "url",
                     "instructions": "",
@@ -138,7 +89,7 @@
                     "conditional_logic": [
                         [
                             {
-                                "field": "field_6666d1a62f57a",
+                                "field": "field_6666d100e5333",
                                 "operator": "!=empty"
                             }
                         ]
@@ -148,10 +99,76 @@
                         "class": "",
                         "id": ""
                     },
-                    "relevanssi_exclude": 0,
                     "default_value": "",
+                    "allow_in_bindings": 1,
                     "placeholder": "",
-                    "parent_repeater": "field_6617de0a9b932"
+                    "parent_repeater": "field_65c10af850c55"
+                },
+                {
+                    "key": "field_68a20bf1af4b2",
+                    "label": "Titre du slide",
+                    "name": "titre",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_65c10af850c55"
+                },
+                {
+                    "key": "field_68a20c43fc05a",
+                    "label": "Sous titre",
+                    "name": "sous_titre",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_65c10af850c55"
+                },
+                {
+                    "key": "field_68a20c4efc05b",
+                    "label": "Texte du bouton",
+                    "name": "texte_du_bouton",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "parent_repeater": "field_65c10af850c55"
                 }
             ]
         }
@@ -174,5 +191,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1732184270
+    "modified": 1755451475
 }

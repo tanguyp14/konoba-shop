@@ -1,11 +1,63 @@
 {
     "key": "group_673fb13cd4f1b",
-    "title": "Adds",
+    "title": "3 blocs",
     "fields": [
         {
+            "key": "field_68a7306c07dfb",
+            "label": "Background Desk",
+            "name": "background_desk",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
+            "key": "field_68a7308007dfc",
+            "label": "Background Mobile",
+            "name": "background_mobile",
+            "aria-label": "",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "return_format": "id",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "allow_in_bindings": 0,
+            "preview_size": "medium"
+        },
+        {
             "key": "field_673fb13cfdc0e",
-            "label": "Lob",
-            "name": "lob",
+            "label": "Blocs",
+            "name": "blocs",
             "aria-label": "",
             "type": "repeater",
             "instructions": "",
@@ -28,27 +80,6 @@
                     "key": "field_673fb14ffdc0f",
                     "label": "Titre",
                     "name": "titre",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "parent_repeater": "field_673fb13cfdc0e"
-                },
-                {
-                    "key": "field_673fb157fdc10",
-                    "label": "Sous titre",
-                    "name": "sous_titre",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -113,5 +144,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1732227452
+    "modified": 1755787426
 }

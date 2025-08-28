@@ -1,0 +1,20 @@
+@import '../../../../src/scss/abstracts/all.scss';
+
+.tylt_promos {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+
+    .tylt-button {
+        width: fit-content;
+        padding: 10px 20px;
+        margin: auto;
+        background-color: $tylt-jaune;
+        border-radius: $border-radius;
+        border: 1px solid $black;
+        font-family: $secondary-font-family;
+        color: $white;
+        padding: 2px 30px;
+    }
+}

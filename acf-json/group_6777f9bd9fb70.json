@@ -24,6 +24,29 @@
             "append": ""
         },
         {
+            "key": "field_68aca0e0677f7",
+            "label": "Nombre de produits à afficher",
+            "name": "number_of_products",
+            "aria-label": "",
+            "type": "number",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": 4,
+            "min": "",
+            "max": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "step": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
             "key": "field_6777fab98840e",
             "label": "Texte Bouton",
             "name": "texte_button",
@@ -63,5 +86,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1735916235
+    "modified": 1756143869
 }
