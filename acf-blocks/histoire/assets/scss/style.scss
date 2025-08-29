@@ -1,0 +1,99 @@
+@import "../../../../src/scss/abstracts/all.scss";
+
+.tylt_histoire {
+  margin: 10vh 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 90vw;
+  justify-content: center;
+  align-items: center;
+  @include breakpoints(md, max) {
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin: 5vh 0;
+    gap: 20px;
+  }
+  &_left {
+    width: 100%;
+    &_pre-titre {
+      font-size: 3vh;
+      font-family: $secondary-font-family;
+      color: $tylt-orange;
+      text-align: left;
+      line-height: 3vh;
+      margin: 0;
+      @include breakpoints(md, max) {
+        font-size: 2vh;
+      }
+    }
+    &_titre {
+      font-size: 4vh;
+      font-family: $secondary-font-family;
+      display: flex;
+      color: $tylt-blue;
+      flex-direction: column;
+      line-height: 4vh;
+      text-wrap: nowrap;
+      @include breakpoints(md, max) {
+        font-size: 3vh;
+        text-wrap: wrap;
+      }
+    }
+    &_texte {
+      margin: 20px 0px;
+      font-weight: 400;
+      color: $black;
+      p {
+        margin-bottom: 10px;
+        strong {
+          font-weight: 800;
+        }
+      }
+    }
+    &_socials {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      @include breakpoints(md, max) {
+        flex-direction: column;
+      }
+      p {
+        background-color: $tylt-jaune;
+        border-radius: 30px;
+        width: fit-content;
+
+        border: 1px solid $black;
+        a {
+          padding: 10px 20px;
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          font-family: $secondary-font-family;
+          color: $white;
+          transition: all 0.3s ease-in-out;
+        }
+        &:hover {
+          background-color: $tylt-orange;
+          border: 1px solid $black;
+          a {
+            color: $white;
+            letter-spacing: 2px;
+          }
+        }
+      }
+    }
+  }
+  &_right {
+    display: flex;
+    clip-path: polygon(0 15.2%, 6.97% 0, 100% 3.2%, 100% 85.7%, 50% 100%, 0 95.7%);
+    overflow: hidden;
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}

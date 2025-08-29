@@ -256,5 +256,3 @@ function banner_image_script() {
     endif;
 }
 
-
-

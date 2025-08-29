@@ -1,10 +1,10 @@
 {
     "$schema": "https://schemas.wp.org/trunk/block.json",
     "apiVersion": 2,
-    "name": "acf/add",
-    "title": "3 blocs gris",
-    "description": "Livraiosn Gratuite - Expedition sous 48h - Paiement 100% sécurisé",
-    "icon": "plus-alt",
+    "name": "acf/histoire",
+    "title": "Histoire",
+    "description": "Block histoire",
+    "icon": "nametag",
     "category": "hatsumei",
     "keywords": [
         "block"
@@ -13,7 +13,7 @@
         "mode": "preview",
         "renderTemplate": "view.php"
     },
-    "script": ["add"],
+    "script": ["histoire"],
     "style": "file:assets/css/style.css",
     "supports": {
         "align": true,

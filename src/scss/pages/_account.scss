@@ -1,0 +1,17 @@
+.konoba-account{
+    max-width: 900px;
+    margin: auto;
+    width: 100%;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    background: $white;
+    padding: 50px;
+    a{
+        color: $tylt-jaune;
+        font-family: $secondary-font-family;
+        &:visited{
+            color: $tylt-jaune;
+        }
+    }
+}

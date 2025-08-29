@@ -1,7 +1,90 @@
 {
     "key": "group_67409de2a2d5a",
-    "title": "Liens RS",
+    "title": "Réglages généraux",
     "fields": [
+        {
+            "key": "field_68b163c44ea00",
+            "label": "Adresse",
+            "name": "adresse",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "65 Rue Jean Lecanuet, 76000 Rouen",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_68b163964e9ff",
+            "label": "Horaires",
+            "name": "horaires",
+            "aria-label": "",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Lundi : Fermé\u2028\r\nMardi : 11h00 – 19h00\u2028\r\nMercredi : 11h00 – 19h00\u2028\r\nJeudi : 11h00 – 19h00\u2028\r\nVendredi : 11h00 – 19h00\u2028\r\nSamedi : 11h00 – 19h00\u2028\r\nDimanche: Fermé",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "rows": "",
+            "placeholder": "",
+            "new_lines": "br"
+        },
+        {
+            "key": "field_68b161209cd64",
+            "label": "E-mail",
+            "name": "email",
+            "aria-label": "",
+            "type": "email",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "mail@mail.fr",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
+        {
+            "key": "field_68b160e58776b",
+            "label": "Numéro de téléphone",
+            "name": "telephone",
+            "aria-label": "",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "0X00000000",
+            "maxlength": "",
+            "allow_in_bindings": 0,
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
+        },
         {
             "key": "field_67409de238813",
             "label": "Liens",
@@ -24,6 +107,37 @@
             "button_label": "Ajouter un élément",
             "rows_per_page": 20,
             "sub_fields": [
+                {
+                    "key": "field_68b15be3c9cb2",
+                    "label": "RS",
+                    "name": "rs",
+                    "aria-label": "",
+                    "type": "select",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "choices": {
+                        "instagram": "Instagram",
+                        "facebook": "Facebook",
+                        "twitter": "Twitter"
+                    },
+                    "default_value": false,
+                    "return_format": "value",
+                    "multiple": 0,
+                    "allow_null": 0,
+                    "allow_in_bindings": 0,
+                    "ui": 0,
+                    "ajax": 0,
+                    "placeholder": "",
+                    "create_options": 0,
+                    "save_options": 0,
+                    "parent_repeater": "field_67409de238813"
+                },
                 {
                     "key": "field_67409df438814",
                     "label": "Icon",
@@ -48,6 +162,28 @@
                     "max_size": "",
                     "mime_types": "",
                     "preview_size": "medium",
+                    "parent_repeater": "field_67409de238813"
+                },
+                {
+                    "key": "field_68b15c4a3a304",
+                    "label": "Nom du RS",
+                    "name": "nom_du_rs",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "allow_in_bindings": 0,
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
                     "parent_repeater": "field_67409de238813"
                 },
                 {
@@ -92,5 +228,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1732288109
+    "modified": 1756456472
 }

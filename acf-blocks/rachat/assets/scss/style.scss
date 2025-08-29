@@ -1,0 +1,70 @@
+@import "../../../../src/scss/abstracts/all.scss";
+
+.tylt_rachat {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  clip-path: polygon(0% 3.2%, 6.97% 0%, 100% 3.2%, 100% 95.7%, 50% 100%, 0% 95.7%);
+
+  &_bg {
+    grid-column: 1;
+    grid-row: 1;
+    background: linear-gradient(90deg, rgba($tylt-blue, 1) 0%, rgba($white, 0) 100%);
+    box-shadow: inset 0px 6px 20px #0000003d;
+    img {
+      object-fit: cover;
+      object-position: center right;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      position: relative;
+    }
+    @include breakpoints(md, max) {
+      background: linear-gradient(90deg, rgba($tylt-blue, 1) 50%, rgba($white, 0) 100%);
+    }
+  }
+  &_content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 5vw 30% 5vw 30px;
+    position: relative;
+    z-index: 3;
+    grid-column: 1;
+    grid-row: 1;
+    text-align: left;
+    height: fit-content;
+    max-width: 1200px;
+    @include breakpoints(md, max) {
+      padding: 10vw 30px;
+    }
+    h2 {
+      color: $white;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      font-size: 5vh;
+      @include breakpoints(md, max) {
+        font-size: 3.5vh;
+      }
+      span {
+        color: $tylt-jaune;
+        font-size: 4vh;
+        @include breakpoints(md, max) {
+          font-size: 3vh;
+        }
+      }
+    }
+    p {
+      color: $white;
+      font-family: $secondary-font-family;
+      span {
+        color: $tylt-jaune;
+      }
+    }
+  }
+}
