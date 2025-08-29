@@ -280,10 +280,6 @@
 	});
 })(jQuery);
 (function ($) {
-	$(document).ready(function ($) {
-	});
-})(jQuery);
-(function ($) {
 
 	function initSwiper($elements) {
 		$elements.each(function () {
@@ -351,6 +347,10 @@
 
 })(jQuery);
 
+(function ($) {
+	$(document).ready(function ($) {
+	});
+})(jQuery);
 (function ($) {
 	$(document).ready(function ($) {
 	});

@@ -66,8 +66,8 @@ $main_category_url = $target_urls[$main_category_name] ?? '#';
         <a href="<?php echo esc_url(home_url('/licences')); ?>">
             < Revenir à la liste des licences</a>
     </div>
-    <?php if ($main_category_name !== 'Tournois' && $main_category_name !== 'Vanguard' && $main_category_name !== 'Promos' && $main_category_name !== 'Accessoires généraux') : ?>
-        <a class="cardmark" target="_blank" href="<?php echo esc_url($main_category_url); ?>">Carte à l'unité <?php echo $main_category_name ?><span class="external"></span></a>
+    <?php if ($main_category_url && $main_category_url !== '#' && $main_category_name !== 'Tournois' && $main_category_name !== 'Vanguard' && $main_category_name !== 'Promos' && $main_category_name !== 'Accessoires généraux') : ?>
+        <a class="cardmark" target="_blank" href="<?php echo esc_url($main_category_url); ?>">Carte à l'unité <?php echo $main_category_name; ?><span class="external"></span></a>
     <?php endif; ?>
     <?php if ($image_url) : ?>
         <img src="<?php echo esc_url($image_url); ?>" alt="<?php echo esc_attr(get_term($main_category_id, 'product_cat')->name); ?>" class="category-main-image">

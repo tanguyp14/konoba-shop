@@ -23,39 +23,6 @@ if (is_tax('product_cat')) :
 
     $target_urls = [];
 
-    // Vérifier si le répéteur 'liens_vers_card_market' existe
-    if (have_rows('liens_vers_card_market', 'option')) {
-        // Parcourir chaque ligne du répéteur
-        while (have_rows('liens_vers_card_market', 'option')) {
-            the_row();
-
-            // Récupérer le nom de la catégorie (qui est un objet WP_Term)
-            $category_object = get_sub_field('nom_de_la_categorie'); // L'objet WP_Term
-            $category_link = get_sub_field('liens_vers_cardmarket'); // Lien vers CardMarket
-
-            // Vérifier si l'objet WP_Term a une propriété 'name' (chaîne)
-            if ($category_object && isset($category_object->name)) {
-                $category_name = $category_object->name; // Extraire le nom de la catégorie
-            } else {
-                $category_name = ''; // Valeur par défaut si l'objet est invalide
-            }
-
-            // Ajouter ces valeurs au tableau
-            if ($category_name && $category_link) {
-                $target_urls[$category_name] = $category_link; // Ajouter la catégorie et le lien dans le tableau
-            }
-        }
-    }
-
-    $main_category = $term;
-    while ($main_category->parent != 0) {
-        $main_category = get_term($main_category->parent, 'product_cat');
-    }
-
-    // Récupérer l'URL correspondante dans $target_urls
-    $main_category_name = $main_category->name;
-    $main_category_url = $target_urls[$main_category_name] ?? '#';
-
     // Vérifier si la catégorie est un parent sans parent (catégorie principale)
     if (!$is_child && $is_parent) : ?>
         <div class="main-parent-category-template">
