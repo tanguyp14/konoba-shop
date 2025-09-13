@@ -6,7 +6,7 @@
 
     <div class="tylt-categorie-header" style="background-color: #004aad;">
         <div class="licence-link">
-            <a href="<?php echo esc_url(home_url('/licences')); ?>"><span class="arrow_back"></span>Revenir à la liste des licences</a>
+            <a href="<?php echo esc_url(home_url('/licences')); ?>">< Revenir à la liste des licences</a>
         </div>
         <h2><?php echo get_the_title(); ?></h2>
     </div>

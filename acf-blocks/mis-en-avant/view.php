@@ -7,9 +7,9 @@ extract($fields);
     <ul class="products columns-<?php echo $number_of_products; ?>">
         <?php
         $args = array(
-            'post_type' => 'product',
+            'post_type'      => 'product',
             'posts_per_page' => $number_of_products,
-            'tax_query' => array(
+            'tax_query'      => array(
                 array(
                     'taxonomy' => 'product_visibility',
                     'field'    => 'name',
@@ -17,16 +17,24 @@ extract($fields);
                     'operator' => 'IN',
                 ),
             ),
-            'orderby' => 'modified',
-            'order'   => 'DESC'
+            'orderby'        => array(
+                'meta_value' => 'ASC',  // Stock status en premier (instock avant outofstock)
+                'modified'   => 'DESC', // Puis par date
+            ),
+            'meta_key'       => '_stock_status',
         );
+
+        // Si la case $only_in_stock est cochée, filtrer uniquement les produits en stock
         if (!empty($only_in_stock)) {
-            $args['meta_query'][] = array(
-                'key'     => '_stock_status',
-                'value'   => 'instock',
-                'compare' => '='
+            $args['meta_query'] = array(
+                array(
+                    'key'     => '_stock_status',
+                    'value'   => 'instock',
+                    'compare' => '=',
+                ),
             );
         }
+
 
         $featured_query = new WP_Query($args);
 

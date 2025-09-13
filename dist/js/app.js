@@ -248,6 +248,10 @@
 
 (function ($) {
 	$(document).ready(function ($) {
+	});
+})(jQuery);
+(function ($) {
+	$(document).ready(function ($) {
 		$('.tylt_blocks_bg').each(function () {
 			var $img = $(this);
 			function updateImage() {
@@ -257,6 +261,10 @@
 			updateImage();
 			$(window).on('resize', updateImage);
 		});
+	});
+})(jQuery);
+(function ($) {
+	$(document).ready(function ($) {
 	});
 })(jQuery);
 (function ($) {
@@ -347,12 +355,4 @@
 
 })(jQuery);
 
-(function ($) {
-	$(document).ready(function ($) {
-	});
-})(jQuery);
-(function ($) {
-	$(document).ready(function ($) {
-	});
-})(jQuery);
 //# sourceMappingURL=app.js.map

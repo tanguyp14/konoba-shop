@@ -10,8 +10,10 @@ get_header('shop');
 ?>
 <?php
 
+$index = 0;
 $time = ($index % 6) * 100;
-$index++;
+$aos_index = 0;
+$main_category_name = '';
 
 // Gros banger
 // Récupérer l'objet de la catégorie
