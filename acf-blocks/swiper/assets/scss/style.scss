@@ -56,6 +56,11 @@ $transition-slider : transform 0.5s cubic-bezier(0.5, 5, 0.5, -1), opacity 0.2s 
                 @include breakpoints(xlg, max) {
                     grid-template-rows: 60px auto 20%;
                 }
+                       @include breakpoints(lg, max) {
+                     grid-template-rows: 40px auto 20%;
+                     gap: 5px;
+                     margin-bottom: 70px;
+                }
 
                 @include breakpoints(md, max) {
                     margin-bottom: 100px;
@@ -75,6 +80,9 @@ $transition-slider : transform 0.5s cubic-bezier(0.5, 5, 0.5, -1), opacity 0.2s 
 
                     @include breakpoints(xlg, max) {
                         font-size: 60px;
+                    }
+                     @include breakpoints(lg, max) {
+                        font-size: 40px;
                     }
 
                     @include breakpoints(md, max) {
@@ -101,7 +109,7 @@ $transition-slider : transform 0.5s cubic-bezier(0.5, 5, 0.5, -1), opacity 0.2s 
                     }
 
                     @include breakpoints(lg, max) {
-                        font-size: 30px;
+                        font-size: 20px;
                     }
 
                     @include breakpoints(md, max) {

@@ -6,7 +6,8 @@
 
     <div class="tylt-categorie-header" style="background-color: #004aad;">
         <div class="licence-link">
-            <a href="<?php echo esc_url(home_url('/licences')); ?>">< Revenir à la liste des licences</a>
+            <a href="<?php echo esc_url(home_url('/licences')); ?>">
+                < Revenir à la liste des licences</a>
         </div>
         <h2><?php echo get_the_title(); ?></h2>
     </div>
@@ -15,9 +16,23 @@
         // Récupère le numéro de page actuel
         $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
+        // $args = array(
+        //     'post_type' => 'product',
+        //     'posts_per_page' => 20,
+        //     'paged' => $paged,
+        //     'meta_query' => array(
+        //         array(
+        //             'key'     => '_sale_price',
+        //             'value'   => 0,
+        //             'compare' => '>',
+        //             'type'    => 'NUMERIC'
+        //         ),
+        //     ),
+        // );
+
         $args = array(
-            'post_type' => 'product',
-            'posts_per_page' => 8,
+            'post_type'      => 'product',
+            'posts_per_page' => 20,
             'paged' => $paged,
             'meta_query' => array(
                 array(
@@ -27,6 +42,11 @@
                     'type'    => 'NUMERIC'
                 ),
             ),
+            'orderby'        => array(
+                'meta_value' => 'ASC',  // Stock status en premier (instock avant outofstock)
+                'modified'   => 'DESC', // Puis par date
+            ),
+            'meta_key'       => '_stock_status',
         );
 
         $featured_query = new WP_Query($args);
@@ -43,7 +63,7 @@
         ?>
     </ul>
 
-    <div class="pagination">
+    <div class="woocommerce-pagination">
         <?php
         echo paginate_links(array(
             'total' => $featured_query->max_num_pages,

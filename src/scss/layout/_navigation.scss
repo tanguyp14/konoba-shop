@@ -4,277 +4,273 @@
 .parent-sibling-categories,
 .current-sibling-categories,
 li {
-    //reset
-    margin: 0;
-    padding: 0;
-    list-style: none;
+  //reset
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .sibling-categories,
 .child-categories,
 .parent-sibling-categories,
 .current-sibling-categories {
-    display: flex;
-    background-color: $tylt-blue;
-    padding: 20px 50px;
-    width: 100%;
-    border-radius: 15px;
-    border: 1px solid $black;
-    justify-content: space-evenly;
-    text-transform: uppercase;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 10px;
+  display: flex;
+  background-color: $tylt-blue;
+  padding: 20px 50px;
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid $black;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 10px;
 
-    li {
-        position: relative;
+  li {
+    position: relative;
 
-        a {
-            transition: all 0.2s ease-in-out;
-            letter-spacing: normal;
-            color: $white;
-            font-family: $secondary-font-family;
+    a {
+      transition: all 0.2s ease-in-out;
+      letter-spacing: normal;
+      color: $white;
+      font-family: $secondary-font-family;
 
-            &:visited {
-                color: $white;
-            }
-
-        }
-
-
-        &:hover {
-            a {
-                letter-spacing: 0.5px;
-                color: lighten($tylt-jaune, 20%);
-            }
-        }
-
-        &.current {
-            a {
-                letter-spacing: 2px;
-                color: $tylt-jaune;
-
-            }
-        }
+      &:visited {
+        color: $white;
+      }
     }
+
+    &:hover {
+      a {
+        letter-spacing: 0.5px;
+        color: lighten($tylt-jaune, 20%);
+      }
+    }
+
+    &.current {
+      a {
+        letter-spacing: 2px;
+        color: $tylt-jaune;
+      }
+    }
+  }
 }
 
 .child-categories,
 .current-sibling-categories,
 .sibling-categories {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
-
 .tylt-categorie-header {
-    width: 100%;
-    align-items: center;
-    border-radius: 15px;
-    display: grid;
-    grid-template-rows: 1fr 20px 40px;
-    background: linear-gradient(45deg, rgba($black, 0.8), rgba($black, 0));
-    position: relative;
-    height: 200px;
+  width: 100%;
+  align-items: center;
+  border-radius: 15px;
+  display: grid;
+  grid-template-rows: 1fr 20px 40px;
+  background: linear-gradient(45deg, rgba($black, 0.8), rgba($black, 0));
+  position: relative;
+  height: 200px;
+
+  @include breakpoints(sm, max) {
+    background: linear-gradient(0deg, rgba($black, 0.8), rgba($black, 0));
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 5%;
+    justify-items: center;
+  }
+
+  .cardmark {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    height: 20px;
+    background-color: $tylt-jaune;
+    border: 1px solid $black;
+    text-align: center;
+    padding: 15px 25px;
+    width: fit-content;
+    font-family: $secondary-font-family;
+    color: $black;
+    transition: all 0.2s ease-in-out;
+    animation: tilt infinite 10s ease-in-out;
+    transform-origin: center right;
+
+    &:visited {
+      color: $black;
+    }
+
+    &:hover {
+      background: darken($tylt-jaune, 20%);
+      letter-spacing: 1px;
+    }
 
     @include breakpoints(sm, max) {
-        background: linear-gradient(0deg, rgba($black, 0.8), rgba($black, 0));
-        grid-template-rows: 1fr 1fr 1fr;
-        padding: 5%;
-        justify-items: center;
+      grid-row: 3;
+      position: relative;
+      right: 0px;
+      bottom: 0px;
+    }
+  }
+
+  .licence-link {
+    grid-row: 2;
+    font-size: 1em;
+    color: $tylt-blue;
+    text-align: left;
+    margin: 0;
+    margin-left: 20px;
+    width: 100%;
+    font-family: $secondary-font-family;
+    text-transform: uppercase;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      margin-left: 30px;
     }
 
-    .cardmark {
-        position: absolute;
-        right: 20px;
-        bottom: 20px;
-        height: 20px;
-        background-color: $tylt-jaune;
-        border: 1px solid $black;
-        text-align: center;
-        padding: 15px 25px;
-        width: fit-content;
-        font-family: $secondary-font-family;
-        color: $black;
-        transition: all 0.2s ease-in-out;
-        animation: tilt infinite 10s ease-in-out;
-        transform-origin: center right;
-
-        &:visited {
-            color: $black;
-        }
-
-        &:hover {
-            background: darken($tylt-jaune, 20%);
-            letter-spacing: 1px;
-        }
-
-        @include breakpoints(sm, max) {
-            grid-row: 3;
-            position: relative;
-            right: 0px;
-            bottom: 0px;
-
-        }
+    @include breakpoints(sm, max) {
+      grid-row: 1;
+      font-size: 12px;
     }
 
-    .licence-link {
-        grid-row: 2;
-        font-size: 1em;
-        color: $tylt-blue;
-        text-align: left;
-        margin: 0;
-        margin-left: 20px;
-        width: 100%;
-        font-family: $secondary-font-family;
-        text-transform: uppercase;
-        transition: all 0.2s ease-in-out;
+    a {
+      color: $tylt-orange;
 
-        &:hover {
-            margin-left: 30px;
-        }
-
-        @include breakpoints(sm, max) {
-            grid-row: 1;
-            font-size: 12px;
-        }
-
-        a {
-            color: $tylt-orange;
-
-            &:visited {
-                color: $tylt-orange;
-
-            }
-        }
-
+      &:visited {
+        color: $tylt-orange;
+      }
     }
+  }
 
-    img {
-        border-radius: 15px;
-        position: absolute;
-        z-index: -1;
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
+  img {
+    border-radius: 15px;
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  h1,
+  h2 {
+    grid-row: 3;
+    font-size: 1.5em;
+    color: $tylt-blue;
+    text-align: left;
+    margin: 0;
+    margin-left: 20px;
+    width: 100%;
+    transition: all 0.3s cubic-bezier(0.165, 0.24, 0.44, 1.2);
+
+    @include breakpoints(sm, max) {
+      grid-row: 2;
+      margin: 0;
+      font-size: 1em;
+      text-shadow: 0px 0px 10px rgba($white, 20%);
     }
+  }
+
+  > a {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    align-items: center;
+    border-radius: $border-radius;
+    display: flex;
+    overflow: hidden;
 
     h1,
     h2 {
-        grid-row: 3;
-        font-size: 1.5em;
-        color: $tylt-blue;
-        text-align: left;
-        margin: 0;
-        margin-left: 20px;
-        width: 100%;
-        transition: all 0.3s cubic-bezier(0.165, 0.24, 0.44, 1.2);
-
-        @include breakpoints(sm, max) {
-            grid-row: 2;
-            margin: 0;
-            font-size: 1em;
-            text-shadow: 0px 0px 10px rgba($white, 20%);
-        }
+      font-size: 1.2em;
     }
 
-    >a {
-        position: relative;
-        height: 200px;
-        width: 100%;
-        align-items: center;
-        border-radius: $border-radius;
-        display: flex;
-        overflow: hidden;
-
-        h1,
-        h2 {
-            font-size: 1.2em;
-        }
-
-        &:hover {
-
-            h1,
-            h2 {
-                margin-left: 5%;
-            }
-        }
+    &:hover {
+      h1,
+      h2 {
+        margin-left: 5%;
+      }
     }
+  }
 }
 
+div.woocommerce-pagination, #post-navigation {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border: none;
+  nav {
+    border: none;
+  }
+  span,
+  a.page-numbers,
+  a.page-numbers:not(.current),
+  a.page-numbers.prev,
+  a.page-numbers.next {
+    background-color: transparent;
+    color: $black;
+    padding: 0;
+    padding-left: 0;
+    padding-right: 0;
+    width: 15px;
+    &:hover {
+      background-color: transparent;
+      color: $tylt-jaune;
+    }
+  }
+  span.page-numbers.current {
+    color: $tylt-orange;
+    background-color: transparent;
+    padding: 0;
+    font-family: $secondary-font-family;
+  }
+  ul.page-numbers,
+  a {
+    background-color: transparent;
+    font-family: $secondary-font-family;
 
-div.woocommerce-pagination {
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    border: none;
-nav{
-    border: none;
-}
-    ul.page-numbers {
+    li {
+      background-color: transparent;
+      width: 15px;
+
+      span,
+      a.page-numbers,
+      a.page-numbers:not(.current),
+      a.page-numbers.prev,
+      a.page-numbers.next {
         background-color: transparent;
-        font-family: $secondary-font-family;
-
-        li {
-            background-color: transparent;
-            width: 15px;
-
-            span, a.page-numbers,a.page-numbers:not(.current),a.page-numbers.prev, a.page-numbers.next {
-                background-color: transparent;
-                color: $black;
-                padding: 0;
-                padding-left: 0;
-                padding-right: 0;
-                width: 15px;
-                &:hover{
-                    background-color: transparent;
-                    color: $tylt-jaune;
-                }
-                
-            }
-
-            span.page-numbers.current {
-                color: $tylt-orange;
-                background-color: transparent;
-                padding: 0;
-            }
-
+        color: $black;
+        padding: 0;
+        padding-left: 0;
+        padding-right: 0;
+        width: 15px;
+        &:hover {
+          background-color: transparent;
+          color: $tylt-jaune;
         }
+      }
+
+      span.page-numbers.current {
+        color: $tylt-orange;
+        background-color: transparent;
+        padding: 0;
+      }
     }
+  }
 }
-
-.pagination {
-
-    span,
-    a {
-        border-radius: $border-radius;
-        display: inline-block;
-        padding: .3342343017em .875em;
-        background-color: rgba(0, 0, 0, .025);
-        color: #6d6d6d;
-
-        &.current {
-            background-color: #961112;
-            color: #fff;
-
-        }
-    }
-}
-
 
 @keyframes tilt {
-    0% {
-        scale: 1;
-    }
+  0% {
+    scale: 1;
+  }
 
-    5% {
-        scale: 1.05;
-    }
+  5% {
+    scale: 1.05;
+  }
 
-    10% {
-         scale: 1;
-    }
-
+  10% {
+    scale: 1;
+  }
 }

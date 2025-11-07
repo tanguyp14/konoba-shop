@@ -1,102 +1,116 @@
 body:has(.site-header-mobile.stick:not(.hidden)) {
-    .tylt_max {
-        margin-top: 75px;
-    }
+  .tylt_max {
+    margin-top: 75px;
+  }
 }
 
 body:has(.site-header.stick:not(.hidden)) {
-    .tylt_max {
-        margin-top: 120px;
-    }
+  .tylt_max {
+    margin-top: 90px;
+  }
 }
 
 .tylt_max {
-    max-width: 90vw;
-    margin: auto;
-    padding: 5px;
-    margin-top: 0px;
-    flex-direction: column;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    @include breakpoints(lg, max) {
-        .product{
-            padding-top: 40px;
-        }
+  max-width: 90vw;
+  margin: auto;
+  padding: 5px;
+  margin-top: 0px;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  @include breakpoints(lg, max) {
+    .product {
+      padding-top: 40px;
     }
+  }
 
-    @include breakpoints(sm, max) {
-        display: block;
-        max-width: 90vw;
-    }
+  @include breakpoints(sm, max) {
+    display: block;
+    max-width: 90vw;
+  }
 }
 
 .woocommerce-checkout {
-    .tylt_max {
-        max-width: 50vw;
+  .tylt_max {
+    max-width: 50vw;
 
-        @include breakpoints(sm, max) {
-            max-width: 90vw;
-        }
+    @include breakpoints(sm, max) {
+      max-width: 90vw;
     }
+  }
 }
 
-.woocommerce:has(>.woocommerce-message),
-.woocommerce:has(>.woocommerce-error) {
-    margin: 30px;
-    border-radius: 15px;
-    border: 1px solid $black;
-    overflow: hidden;
+.woocommerce:has(> .woocommerce-message),
+.woocommerce:has(> .woocommerce-error) {
+  margin: 30px;
+  border-radius: 15px;
+  border: 1px solid $black;
+  overflow: hidden;
 
-    .woocommerce-message {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        border: unset;
-        margin-bottom: 0;
+  .woocommerce-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: unset;
+    margin-bottom: 0;
 
-        @include breakpoints(sm, max) {
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        &::after,
-        &::before {
-            display: none;
-        }
-
-        a {
-            min-width: 30%;
-        }
+    @include breakpoints(sm, max) {
+      flex-direction: column;
+      gap: 20px;
     }
 
-    .woocommerce-error {
-        margin-bottom: 0;
-        display: flex;
-        flex-direction: row;
-        border: unset;
-        padding: 20px;
-
-        &::after,
-        &::before {
-            display: none;
-        }
-
-        li {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-
-            @include breakpoints(sm, max) {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            a {
-                min-width: 30%;
-            }
-        }
+    &::after,
+    &::before {
+      display: none;
     }
+
+    a {
+      min-width: 30%;
+    }
+  }
+
+  .woocommerce-error {
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: row;
+    border: unset;
+    padding: 20px;
+
+    &::after,
+    &::before {
+      display: none;
+    }
+
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      @include breakpoints(sm, max) {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      a {
+        min-width: 30%;
+      }
+    }
+  }
+}
+
+body.error404 {
+  .error-404 {
+    .page-header {
+      z-index: 10;
+      top: 0;
+      width: 100%;
+      position: relative;
+      padding: 0px;
+      display: flex;
+      margin: 0px;
+    }
+  }
 }

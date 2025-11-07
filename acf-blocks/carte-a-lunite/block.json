@@ -1,0 +1,23 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 2,
+    "name": "acf/carte-a-lunite",
+    "title": "Cartes à l'unité",
+    "description": "Block Cartes à l'unité",
+    "icon": "tickets-alt",
+    "category": "hatsumei",
+    "keywords": [
+        "block"
+    ],
+    "acf": {
+        "mode": "preview",
+        "renderTemplate": "view.php"
+    },
+    "script": ["carte-a-lunite"],
+    "style": "file:assets/css/style.css",
+    "supports": {
+        "align": true,
+        "html": false,
+        "multiple": false
+    }
+}
