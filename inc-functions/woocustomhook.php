@@ -9,9 +9,9 @@ function custom_woocommerce_product_query($q) {
             
             // Tri par stock puis par date
             $q->set('orderby', array(
-                'meta_value_num' => 'DESC', // Featured en second
                 'meta_value' => 'ASC',      // Stock status en premier
-                'modified'   => 'DESC'      // Puis par date
+                'meta_value_num' => 'DESC', // Featured en second
+                'date'       => 'DESC'      // Puis par date d'ajout
             ));
             $q->set('meta_query', array(
                 'relation' => 'OR',
