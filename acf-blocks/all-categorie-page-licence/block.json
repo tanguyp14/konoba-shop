@@ -3,7 +3,7 @@
     "apiVersion": 2,
     "name": "acf/all-categorie-page-licence",
     "title": "Pour la page licence",
-    "description": "all-categorie-page-licence",
+    "description": "Affiche les catégories de licences en grille. ⚠️ La sélection ici met aussi à jour le menu mobile.",
     "icon": "carrot",
     "category": "hatsumei",
     "keywords": [
