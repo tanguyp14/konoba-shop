@@ -62,9 +62,9 @@ $licence_categories = tylt_get_licence_nav_categories();
     <?php endif; ?>
 
     <?php wp_nav_menu(array(
-        'theme_location'  => 'secondary',
-        'container'       => 'nav',
-        'container_class' => 'footer-menu',
+        'theme_location' => 'menu_tylt_mobile',
+        'container'      => false,
+        'menu_id'        => 'menu_tylt_mobile',
     )); ?>
 
 </nav>
