@@ -11,9 +11,11 @@
     ],
     "acf": {
         "mode": "preview",
-        "renderTemplate": "view.php"
+        "renderTemplate": "view.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
     },
-    "script": "acf/swiper",
+    "script": ["swiper"],
     "style": "file:assets/css/style.css",
     "supports": {
         "align": true,

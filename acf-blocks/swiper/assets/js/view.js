@@ -1,6 +1,14 @@
 (function ($) {
 
+	function slickReady() {
+		return typeof $.fn.slick === 'function';
+	}
+
 	function initSwiper($elements) {
+		if (!slickReady()) {
+			return;
+		}
+
 		$elements.each(function () {
 			const $el = $(this);
 			if (!$el.hasClass('slick-initialized')) {
@@ -48,7 +56,9 @@
 			}
 		});
 
-		$('.swiper.slick-initialized').slick('setPosition');
+		if (slickReady()) {
+			$('.swiper.slick-initialized').slick('setPosition');
+		}
 	}
 
 	$(document).ready(function () {

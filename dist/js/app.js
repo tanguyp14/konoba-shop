@@ -248,10 +248,6 @@
 
 (function ($) {
 	$(document).ready(function ($) {
-	});
-})(jQuery);
-(function ($) {
-	$(document).ready(function ($) {
 		$('.tylt_blocks_bg').each(function () {
 			var $img = $(this);
 			function updateImage() {
@@ -293,7 +289,15 @@
 })(jQuery);
 (function ($) {
 
+	function slickReady() {
+		return typeof $.fn.slick === 'function';
+	}
+
 	function initSwiper($elements) {
+		if (!slickReady()) {
+			return;
+		}
+
 		$elements.each(function () {
 			const $el = $(this);
 			if (!$el.hasClass('slick-initialized')) {
@@ -341,7 +345,9 @@
 			}
 		});
 
-		$('.swiper.slick-initialized').slick('setPosition');
+		if (slickReady()) {
+			$('.swiper.slick-initialized').slick('setPosition');
+		}
 	}
 
 	$(document).ready(function () {
@@ -359,4 +365,8 @@
 
 })(jQuery);
 
+(function ($) {
+	$(document).ready(function ($) {
+	});
+})(jQuery);
 //# sourceMappingURL=app.js.map

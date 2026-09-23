@@ -1,6 +1,6 @@
 <?php
-global $product; 
-$time = get_query_var('time'); 
+global $product;
+$time = get_query_var('time');
 ?>
 <li class="tylt_card_product <?php echo !$product->is_in_stock() ? 'out-of-stock' : ''; ?>" data-aos="fade-up" data-aos-delay="<?php echo $time ?>" data-aos-anchor-placement="top-bottom">
     <div class="tylt_tags">
@@ -28,8 +28,42 @@ $time = get_query_var('time');
     </a>
     <div class="tylt_card_actions">
         <?php if ($product->is_in_stock()) : ?>
-            <a href="?add-to-cart=<?php echo $product->get_id(); ?>" class="tylt_card_add_to_cart">Ajouter au panier</a>
+            <?php
+            $is_tournoi = false;
+
+            $terms = get_the_terms($product->get_id(), 'product_cat');
+
+            if ($terms && !is_wp_error($terms)) {
+                foreach ($terms as $term) {
+                    // Si la catégorie est "tournoi"
+                    if ($term->slug === 'tournoi') {
+                        $is_tournoi = true;
+                        break;
+                    }
+
+                    // Si son parent est "tournoi"
+                    if ($term->parent) {
+                        $parent = get_term($term->parent, 'product_cat');
+                        if ($parent && $parent->slug === 'tournoi') {
+                            $is_tournoi = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            ?>
+
+            <?php if ($is_tournoi) : ?>
+                <a href="<?php echo get_permalink(); ?>" class="tylt_card_add_to_cart">S'inscrire au tournoi</a>
+            <?php else : ?>
+                <a href="?add-to-cart=<?php echo $product->get_id(); ?>" class="tylt_card_add_to_cart">Ajouter au panier</a>
+            <?php endif; ?>
+
+
         <?php endif; ?>
-        <a href="<?php echo get_permalink(); ?>" class="tylt-see-more"><span>Voir plus</span></a>
+
+        <a href="<?php echo get_permalink(); ?>" class="tylt-see-more">
+            <span>Voir plus</span>
+        </a>
     </div>
 </li>

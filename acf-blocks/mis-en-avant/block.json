@@ -11,7 +11,9 @@
     ],
     "acf": {
         "mode": "preview",
-        "renderTemplate": "view.php"
+        "renderTemplate": "view.php",
+        "blockVersion": 3,
+        "autoInlineEditing": true
     },
     "script": ["mis-en-avant"],
     "style": "file:assets/css/style.css",

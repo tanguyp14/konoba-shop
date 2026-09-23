@@ -1,17 +1,991 @@
-.konoba-account{
-    max-width: 900px;
-    margin: auto;
-    width: 100%;
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    background: $white;
-    padding: 50px;
-    a{
-        color: $tylt-jaune;
+/* ==========================================================================
+   Espace client : connexion, navigation, tableau de bord
+   ========================================================================== */
+
+$konoba-card-radius: 24px;
+$konoba-shadow: 0 10px 40px rgba(38, 38, 38, 0.08);
+$konoba-border: rgba(38, 38, 38, 0.1);
+
+.konoba-picto {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Bouton commun -------------------------------------------------------- */
+
+.konoba-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border: 2px solid var(--orange);
+    border-radius: 999px;
+    background: var(--orange);
+    color: $white;
+    font-family: $primary-font-family;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+
+    &__icon {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.25s ease;
+    }
+
+    @include hover {
+        background: $black;
+        border-color: $black;
+        color: $white;
+
+        .konoba-btn__icon {
+            transform: translateX(4px);
+        }
+    }
+
+    &--ghost {
+        background: transparent;
+        color: var(--orange);
+
+        @include hover {
+            background: var(--orange);
+            border-color: var(--orange);
+            color: $white;
+        }
+    }
+}
+
+/* Connexion ------------------------------------------------------------ */
+
+.konoba-login {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    align-items: start;
+
+    @include breakpoints(md, max) {
+        grid-template-columns: 1fr;
+        margin: 0 auto 60px;
+    }
+
+    &__panel,
+    &__aside {
+        background: $white;
+        border-radius: $konoba-card-radius;
+        box-shadow: $konoba-shadow;
+        padding: 44px;
+
+        @include breakpoints(sm, max) {
+            padding: 28px 22px;
+        }
+    }
+
+    &__aside {
+        background: $black;
+        color: $white;
+    }
+
+    &__eyebrow {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--orange);
+        margin-bottom: 10px;
+    }
+
+    &__title {
         font-family: $secondary-font-family;
-        &:visited{
+        font-size: 38px;
+        line-height: 1.1;
+        margin: 0 0 12px;
+        color: $black;
+        text-align: left; /* le thème centre tous les h2 */
+    }
+
+    &__intro {
+        color: rgba(38, 38, 38, 0.7);
+        margin: 0 0 28px;
+    }
+
+    /* Champs */
+    .woocommerce-form-row {
+        margin-bottom: 18px;
+    }
+
+    label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: $black;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid $konoba-border;
+        border-radius: 14px;
+        background: rgba(38, 38, 38, 0.02);
+        font-family: $primary-font-family;
+        font-size: 15px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(255, 95, 1, 0.15);
+        }
+    }
+
+    &__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 4px 0 24px;
+        flex-wrap: wrap;
+
+        label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-weight: 400;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            accent-color: var(--orange);
+        }
+    }
+
+    &__lost {
+        font-size: 14px;
+        color: $black;
+        text-decoration: underline;
+
+        @include hover {
+            color: var(--orange);
+        }
+    }
+
+    &__submit-row {
+        margin: 0;
+    }
+
+    &__hint {
+        display: block;
+        margin-top: 6px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Colonne sombre */
+    &__aside-title {
+        font-family: $secondary-font-family;
+        font-size: 28px;
+        line-height: 1.15;
+        margin: 0 0 10px;
+        color: $white;
+        text-align: left;
+    }
+
+    &__aside-text {
+        color: rgba(255, 255, 255, 0.72);
+        margin: 0 0 26px;
+    }
+
+    &__atouts {
+        list-style: none;
+        margin: 0 0 30px;
+        padding: 0;
+        display: grid;
+        gap: 18px;
+    }
+
+    &__atout {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    &__atout-icon {
+        flex: 0 0 auto;
+        width: 42px;
+        height: 42px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 95, 1, 0.16);
+        color: $tylt-jaune;
+    }
+
+    &__atout-text {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        strong {
+            font-size: 15px;
+            color: $white;
+        }
+
+        em {
+            font-style: normal;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    }
+
+    &__register {
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        padding-top: 24px;
+
+        label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.18);
+            color: $white;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.4);
+            }
+        }
+
+        .konoba-btn--ghost {
+            width: 100%;
+            color: $tylt-jaune;
+            border-color: $tylt-jaune;
+
+            @include hover {
+                background: $tylt-jaune;
+                border-color: $tylt-jaune;
+                color: $black;
+            }
+        }
+    }
+}
+
+/* Mon compte : structure ------------------------------------------------ */
+
+.woocommerce-account {
+
+    /* Décoller le contenu du menu fixe en haut de page. */
+    .woocommerce {
+        margin-top: 60px;
+
+        @include breakpoints(sm, max) {
+            margin-top: 32px;
+        }
+    }
+
+    .woocommerce-MyAccount-content {
+        background: $white;
+        border-radius: $konoba-card-radius;
+        box-shadow: $konoba-shadow;
+        padding: 36px;
+
+        @include breakpoints(sm, max) {
+            padding: 24px 20px;
+        }
+    }
+}
+
+/* Formulaires du compte (détails, adresses, mot de passe perdu) ---------- */
+
+.woocommerce-MyAccount-content,
+.woocommerce-ResetPassword {
+
+    label {
+        display: block;
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 6px;
+        color: $black;
+    }
+
+    .required {
+        color: var(--orange);
+        text-decoration: none;
+        border: none;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 13px 16px;
+        border: 1px solid $konoba-border;
+        border-radius: 14px;
+        background: rgba(38, 38, 38, 0.02);
+        font-family: $primary-font-family;
+        font-size: 15px;
+        color: $black;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(255, 95, 1, 0.15);
+        }
+    }
+
+    /* Deux colonnes propres pour prénom / nom, adresses, etc. */
+    .woocommerce-EditAccountForm,
+    .woocommerce-address-fields__field-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px 20px;
+
+        @include breakpoints(sm, max) {
+            grid-template-columns: 1fr;
+        }
+
+        > * {
+            grid-column: 1 / -1;
+            float: none;
+            width: auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        > .form-row-first,
+        > .form-row-last {
+            @include breakpoints(sm) {
+                grid-column: span 1;
+            }
+        }
+    }
+
+    .form-row,
+    .woocommerce-form-row {
+        margin: 0 0 18px;
+        padding: 0;
+    }
+
+    /* Bloc « Changement de mot de passe » */
+    fieldset {
+        grid-column: 1 / -1;
+        margin: 10px 0 24px;
+        padding: 22px;
+        border: 1px solid $konoba-border;
+        border-radius: 18px;
+        background: rgba(38, 38, 38, 0.015);
+
+        legend {
+            padding: 0 10px;
+            font-family: $secondary-font-family;
+            font-size: 18px;
+            color: $black;
+        }
+    }
+
+    span.description,
+    em {
+        display: block;
+        margin-top: 6px;
+        font-size: 13px;
+        font-style: normal;
+        color: rgba(38, 38, 38, 0.55);
+    }
+
+    /* Champ mot de passe avec l'œil de WooCommerce */
+    .woocommerce-password-strength,
+    .woocommerce-password-hint {
+        margin-top: 8px;
+        border-radius: 10px;
+        font-size: 13px;
+    }
+
+    .password-input {
+        display: block;
+        width: 100%;
+        position: relative;
+    }
+
+    .show-password-input {
+        top: 50%;
+        right: 14px;
+        transform: translateY(-50%);
+        background: none;
+        color: rgba(38, 38, 38, 0.45);
+
+        @include hover {
+            color: var(--orange);
+        }
+    }
+
+    /* Boutons */
+    button.button,
+    input.button,
+    a.button,
+    .woocommerce-Button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 13px 26px;
+        border: 2px solid var(--orange);
+        border-radius: 999px;
+        background: var(--orange);
+        color: $white;
+        font-family: $primary-font-family;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 1;
+        text-decoration: none;
+        transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+
+        @include hover {
+            background: $black;
+            border-color: $black;
+            color: $white;
+        }
+    }
+}
+
+/* Navigation ------------------------------------------------------------ */
+
+.konoba-accnav {
+    background: $white;
+    border-radius: $konoba-card-radius;
+    box-shadow: $konoba-shadow;
+    padding: 24px;
+
+    &__identity {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid $konoba-border;
+    }
+
+    &__avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 95, 1, 0.12);
+        color: var(--orange);
+        flex: 0 0 auto;
+    }
+
+    &__labels {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+
+        strong {
+            font-size: 15px;
+            color: $black;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        em {
+            font-style: normal;
+            font-size: 12px;
+            color: rgba(38, 38, 38, 0.55);
+        }
+    }
+
+    &__points {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 4px 12px;
+        margin: 18px 0;
+        padding: 16px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, $black 0%, #3a3a3a 100%);
+        color: $white;
+
+        &-icon {
+            grid-row: span 2;
+            width: 26px;
+            height: 26px;
+            color: $tylt-jaune;
+        }
+
+        &-value {
+            font-family: $secondary-font-family;
+            font-size: 26px;
+            line-height: 1;
+            color: $tylt-jaune;
+        }
+
+        &-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.65);
+        }
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        border: none;
+    }
+
+    li {
+        margin: 0;
+        border: none;
+
+        /* Storefront ajoute ses propres pictos Font Awesome : on les retire. */
+        a::before,
+        a::after {
+            content: none !important;
+            display: none !important;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            color: $black;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background 0.2s ease, color 0.2s ease;
+
+            @include hover {
+                background: rgba(255, 95, 1, 0.08);
+                color: var(--orange);
+            }
+        }
+
+        &.is-active a {
+            background: var(--orange);
+            color: $white;
+        }
+    }
+
+    &__icon {
+        display: block;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
+    }
+}
+
+/* Storefront cible ses liens de menu compte avec une spécificité élevée
+   (.hentry .entry-content …) : on repasse au-dessus pour garder la mise en page. */
+.woocommerce-account .hentry .entry-content .konoba-accnav ul li.woocommerce-MyAccount-navigation-link {
+    border: none;
+
+    a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        color: $black;
+        font-size: 15px;
+        text-decoration: none;
+        transition: background 0.2s ease, color 0.2s ease;
+
+        @include hover {
+            background: rgba(255, 95, 1, 0.08);
+            color: var(--orange);
+        }
+    }
+
+    &.is-active a {
+        background: var(--orange);
+        color: $white;
+    }
+}
+
+/* Tableau de bord ------------------------------------------------------- */
+
+.konoba-dash {
+
+    &__welcome {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        padding: 26px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, $black 0%, #3a3a3a 100%);
+        color: $white;
+        margin-bottom: 26px;
+        flex-wrap: wrap;
+
+        h2 {
+            font-family: $secondary-font-family;
+            font-size: 26px;
+            margin: 0 0 4px;
+            color: $white;
+        }
+
+        p {
+            margin: 0;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
+
+    &__welcome-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 95, 1, 0.2);
+        color: $tylt-jaune;
+        flex: 0 0 auto;
+
+        .konoba-picto {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    &__welcome-text {
+        flex: 1 1 260px;
+        text-align: center;
+    }
+
+    &__logout {
+        color: $white;
+        font-size: 13px;
+        text-decoration: underline;
+        white-space: nowrap;
+
+        @include hover {
             color: $tylt-jaune;
         }
     }
+
+    &__stats {
+        list-style: none;
+        margin: 0 0 26px;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+
+        @include breakpoints(sm, max) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    &__stat {
+        padding: 22px;
+        border: 1px solid $konoba-border;
+        border-radius: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+
+        &--highlight {
+            border-color: rgba(255, 95, 1, 0.35);
+            background: rgba(255, 95, 1, 0.05);
+        }
+    }
+
+    &__stat-label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(38, 38, 38, 0.55);
+    }
+
+    &__stat-value {
+        font-family: $secondary-font-family;
+        font-size: 30px;
+        line-height: 1.1;
+        color: $black;
+
+        a {
+            color: var(--orange);
+            text-decoration: none;
+        }
+
+        em {
+            display: block;
+            font-style: normal;
+            font-size: 13px;
+            font-family: $primary-font-family;
+            color: rgba(38, 38, 38, 0.55);
+        }
+    }
+
+    &__stat-note {
+        font-style: normal;
+        font-size: 12px;
+        color: rgba(38, 38, 38, 0.55);
+    }
+
+    /* Aperçu des précommandes */
+    &__preorders {
+        border: 1px solid $konoba-border;
+        border-radius: 18px;
+        padding: 22px;
+        margin-bottom: 26px;
+    }
+
+    &__preorders-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+
+        h3 {
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            font-size: 17px;
+            color: $black;
+
+            .konoba-picto {
+                color: var(--orange);
+            }
+        }
+
+        a {
+            font-size: 14px;
+            color: var(--orange);
+            text-decoration: underline;
+        }
+    }
+
+    &__preorders-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(38, 38, 38, 0.06);
+
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+
+        img {
+            width: 46px;
+            height: 46px;
+            object-fit: cover;
+            border-radius: 12px;
+            flex: 0 0 auto;
+        }
+    }
+
+    &__preorder-name {
+        font-weight: 700;
+        flex: 1 1 auto;
+    }
+
+    &__preorder-meta {
+        font-size: 13px;
+        color: rgba(38, 38, 38, 0.6);
+        white-space: nowrap;
+    }
+
+    /* Raccourcis */
+    &__shortcuts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 16px;
+    }
+
+    &__card {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 22px;
+        border: 1px solid $konoba-border;
+        border-radius: 18px;
+        text-decoration: none;
+        color: $black;
+        background: $white;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+
+        strong {
+            font-size: 16px;
+        }
+
+        em {
+            font-style: normal;
+            font-size: 13px;
+            color: rgba(38, 38, 38, 0.6);
+        }
+
+        @include hover {
+            transform: translateY(-3px);
+            border-color: var(--orange);
+            box-shadow: $konoba-shadow;
+            color: $black;
+        }
+    }
+
+    &__card-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 95, 1, 0.1);
+        color: var(--orange);
+        margin-bottom: 6px;
+    }
+}
+
+/* Précommandes (plugin TYLT) -------------------------------------------- */
+
+.tfp-points {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 0 0 20px;
+    font-size: 15px;
+
+    &__value {
+        font-family: $secondary-font-family;
+        font-size: 24px;
+        color: var(--orange);
+    }
+}
+
+.tfp-preorders {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+        text-align: left;
+        padding: 12px 10px;
+        border-bottom: 1px solid $konoba-border;
+        vertical-align: middle;
+    }
+
+    th {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(38, 38, 38, 0.55);
+    }
+
+    img {
+        border-radius: 10px;
+    }
+
+    @include breakpoints(sm, max) {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+.tfp-reserve-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+
+    /* Champ et bouton exactement à la même hauteur. */
+    input[type="number"],
+    .button {
+        height: 46px;
+        box-sizing: border-box;
+        margin: 0;
+        line-height: 1;
+    }
+
+    input[type="number"] {
+        width: 72px;
+        padding: 0 10px;
+        border: 1px solid $konoba-border;
+        border-radius: 12px;
+        font-family: $primary-font-family;
+        font-size: 15px;
+        text-align: center;
+
+        &:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px rgba(255, 95, 1, 0.15);
+        }
+    }
+
+    .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        padding: 0 24px;
+        font-size: 14px;
+    }
+}
+
+.tfp-reserve-hint {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: rgba(38, 38, 38, 0.5);
+}
+
+/* Pastille « déjà réservé » */
+.tfp-reserved {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    padding: 5px 12px 5px 8px;
+    border-radius: 999px;
+    background: rgba(19, 192, 91, 0.12);
+    color: #0b8f43;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+
+    svg {
+        width: 14px;
+        height: 14px;
+        flex: 0 0 auto;
+    }
+}
+
+.tfp-feedback {
+    border-radius: 14px;
 }
