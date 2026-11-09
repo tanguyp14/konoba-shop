@@ -31,8 +31,8 @@ $konoba_orders = wc_get_orders(array(
 $konoba_count = count($konoba_orders);
 $konoba_last  = $konoba_count ? $konoba_orders[0] : null;
 
-// Précommandes accessibles au client (plugin TYLT - Fidélités & Précommandes).
-$konoba_preorders = function_exists('konoba_get_preorders') ? konoba_get_preorders(true) : array();
+// Réservations accessibles au client (plugin TYLT - Fidélités & Réservations).
+$konoba_reservations = function_exists('konoba_get_reservations') ? konoba_get_reservations(true) : array();
 ?>
 
 <div class="konoba-dash">
@@ -41,7 +41,7 @@ $konoba_preorders = function_exists('konoba_get_preorders') ? konoba_get_preorde
         <span class="konoba-dash__welcome-icon"><?php echo konoba_icon('cards', 'konoba-picto'); ?></span>
         <div class="konoba-dash__welcome-text">
             <h2><?php printf(esc_html__('Bonjour %s', 'konoba'), esc_html($konoba_hello)); ?></h2>
-            <p><?php esc_html_e('Bienvenue dans votre espace. Retrouvez ici vos points de fidélité, vos précommandes et vos commandes.', 'konoba'); ?></p>
+            <p><?php esc_html_e('Bienvenue dans votre espace. Retrouvez ici vos points de fidélité, vos réservations et vos commandes.', 'konoba'); ?></p>
         </div>
         <a class="konoba-dash__logout" href="<?php echo esc_url(wc_logout_url()); ?>"><?php esc_html_e('Se déconnecter', 'konoba'); ?></a>
     </div>
@@ -73,20 +73,20 @@ $konoba_preorders = function_exists('konoba_get_preorders') ? konoba_get_preorde
         </li>
     </ul>
 
-    <?php if (!empty($konoba_preorders)) : ?>
-        <div class="konoba-dash__preorders">
-            <div class="konoba-dash__preorders-head">
-                <h3><?php echo konoba_icon('calendar', 'konoba-picto'); ?> <?php esc_html_e('Précommandes ouvertes', 'konoba'); ?></h3>
-                <a href="<?php echo esc_url(wc_get_endpoint_url('precommandes')); ?>"><?php esc_html_e('Tout voir', 'konoba'); ?></a>
+    <?php if (!empty($konoba_reservations)) : ?>
+        <div class="konoba-dash__reservations">
+            <div class="konoba-dash__reservations-head">
+                <h3><?php echo konoba_icon('calendar', 'konoba-picto'); ?> <?php esc_html_e('Réservations ouvertes', 'konoba'); ?></h3>
+                <a href="<?php echo esc_url(wc_get_endpoint_url('reservations')); ?>"><?php esc_html_e('Tout voir', 'konoba'); ?></a>
             </div>
-            <ul class="konoba-dash__preorders-list">
-                <?php foreach (array_slice($konoba_preorders, 0, 3) as $konoba_item) : ?>
+            <ul class="konoba-dash__reservations-list">
+                <?php foreach (array_slice($konoba_reservations, 0, 3) as $konoba_item) : ?>
                     <li>
                         <?php if ($konoba_item['image_url']) : ?>
                             <img src="<?php echo esc_url($konoba_item['image_url']); ?>" alt="" />
                         <?php endif; ?>
-                        <span class="konoba-dash__preorder-name"><?php echo esc_html($konoba_item['name']); ?></span>
-                        <span class="konoba-dash__preorder-meta">
+                        <span class="konoba-dash__reservation-name"><?php echo esc_html($konoba_item['name']); ?></span>
+                        <span class="konoba-dash__reservation-meta">
                             <?php echo wp_kses_post(wc_price($konoba_item['price'])); ?>
                             <?php if ($konoba_item['date_end']) : ?>
                                 &middot; <?php printf(esc_html__('jusqu\'au %s', 'konoba'), esc_html(date_i18n(get_option('date_format'), strtotime($konoba_item['date_end'])))); ?>
@@ -101,11 +101,11 @@ $konoba_preorders = function_exists('konoba_get_preorders') ? konoba_get_preorde
     <div class="konoba-dash__shortcuts">
         <?php
         $konoba_cards = array(
-            array('calendar', __('Mes précommandes', 'konoba'), __('Réservez les prochaines sorties.', 'konoba'), wc_get_endpoint_url('precommandes')),
+            array('calendar', __('Mes réservations', 'konoba'), __('Réservez les prochaines sorties.', 'konoba'), wc_get_endpoint_url('reservations')),
             array('box',      __('Mes commandes', 'konoba'),    __('Suivi et détail de vos commandes.', 'konoba'), wc_get_endpoint_url('orders')),
             array('globe',    __('Mes adresses', 'konoba'),     __('Facturation et livraison.', 'konoba'),         wc_get_endpoint_url('edit-address')),
             array('user',     __('Mes informations', 'konoba'), __('Nom, e-mail et mot de passe.', 'konoba'),      wc_get_endpoint_url('edit-account')),
-            array('cart',     __('Boutique', 'konoba'),         __('Retour au catalogue.', 'konoba'),              wc_get_page_permalink('shop')),
+            array('cart',     __('Boutique', 'konoba'),         __('Retour au catalogue.', 'konoba'),              konoba_catalog_url()),
         );
         foreach ($konoba_cards as $konoba_card) : ?>
             <a class="konoba-dash__card" href="<?php echo esc_url($konoba_card[3]); ?>">

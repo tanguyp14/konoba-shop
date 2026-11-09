@@ -15,7 +15,7 @@ do_action('woocommerce_before_account_navigation');
 $konoba_nav_icons = array(
     'dashboard'       => 'shop',
     'orders'          => 'box',
-    'precommandes'    => 'calendar',
+    'reservations'    => 'calendar',
     'downloads'       => 'tag',
     'edit-address'    => 'globe',
     'edit-account'    => 'user',

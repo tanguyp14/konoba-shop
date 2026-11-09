@@ -16,7 +16,7 @@ $konoba_registration = ('yes' === get_option('woocommerce_enable_myaccount_regis
 
 $konoba_atouts = array(
     array('star',     __('Carte de fidélité', 'konoba'),  __('Vos points cumulés en boutique, consultables en ligne.', 'konoba')),
-    array('calendar', __('Précommandes', 'konoba'),       __('Réservez les nouvelles sorties avant tout le monde.', 'konoba')),
+    array('calendar', __('Réservations', 'konoba'),       __('Réservez les nouvelles sorties avant tout le monde.', 'konoba')),
     array('box',      __('Commandes & suivi', 'konoba'),  __('Historique et suivi de vos commandes au même endroit.', 'konoba')),
 );
 ?>
@@ -26,7 +26,7 @@ $konoba_atouts = array(
     <div class="konoba-login__panel">
         <span class="konoba-login__eyebrow"><?php esc_html_e('Espace client', 'konoba'); ?></span>
         <h2 class="konoba-login__title"><?php esc_html_e('Se connecter', 'konoba'); ?></h2>
-        <p class="konoba-login__intro"><?php esc_html_e('Retrouvez vos points de fidélité, vos précommandes et vos commandes.', 'konoba'); ?></p>
+        <p class="konoba-login__intro"><?php esc_html_e('Retrouvez vos points de fidélité, vos réservations et vos commandes.', 'konoba'); ?></p>
 
         <form class="woocommerce-form woocommerce-form-login login" method="post" novalidate>
 
@@ -70,7 +70,7 @@ $konoba_atouts = array(
         <h3 class="konoba-login__aside-title">
             <?php echo $konoba_registration ? esc_html__('Créer un compte', 'konoba') : esc_html__('Pas encore de compte ?', 'konoba'); ?>
         </h3>
-        <p class="konoba-login__aside-text"><?php esc_html_e('Rejoignez la communauté Konoba Cards : fidélité, précommandes et nouveautés en avant-première.', 'konoba'); ?></p>
+        <p class="konoba-login__aside-text"><?php esc_html_e('Rejoignez la communauté Konoba Cards : fidélité, réservations et nouveautés en avant-première.', 'konoba'); ?></p>
 
         <ul class="konoba-login__atouts">
             <?php foreach ($konoba_atouts as $konoba_atout) : ?>
@@ -128,7 +128,7 @@ $konoba_atouts = array(
 
         <?php else : ?>
 
-            <a class="konoba-btn konoba-btn--ghost" href="<?php echo esc_url(wc_get_page_permalink('shop')); ?>">
+            <a class="konoba-btn konoba-btn--ghost" href="<?php echo esc_url(konoba_catalog_url()); ?>">
                 <?php esc_html_e('Découvrir la boutique', 'konoba'); ?>
                 <?php echo konoba_icon('arrow', 'konoba-btn__icon'); ?>
             </a>

@@ -106,6 +106,10 @@ if ( ! function_exists( 'storefront_page_header' ) ) {
     }
 }
 
+add_filter( 'oembed_response_data', function ( $data ) {
+    unset( $data['author_name'], $data['author_url'] );
+    return $data;
+} );
 
 add_action('woocommerce_product_options_stock_fields', function () {
     global $post;

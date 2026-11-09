@@ -65,10 +65,35 @@ add_action('woocommerce_single_product_summary', 'afficher_description_complete_
 function afficher_description_complete_sous_titre()
 {
     global $product;
+    // wc_format_content applique wpautop : les retours à la ligne saisis
+    // dans l'éditeur deviennent des paragraphes au lieu d'être fusionnés.
     echo '<div class="custom-description">';
-    echo wp_kses_post($product->get_description());
+    echo wc_format_content(wp_kses_post($product->get_description()));
     echo '</div>';
 }
+
+/**
+ * Affichage du stock sur la fiche produit : pas de quantité exacte,
+ * seulement « En stock », « Stock presque épuisé » (moins de 10) ou « En rupture de stock ».
+ */
+function konoba_availability_text($availability, $product)
+{
+    if (!$product->is_in_stock()) {
+        return 'En rupture de stock';
+    }
+
+    // Précommande / réapprovisionnement : on garde le message WooCommerce
+    if ($product->is_on_backorder()) {
+        return $availability;
+    }
+
+    if ($product->managing_stock() && $product->get_stock_quantity() < 10) {
+        return 'Stock presque épuisé';
+    }
+
+    return 'En stock';
+}
+add_filter('woocommerce_get_availability_text', 'konoba_availability_text', 10, 2);
 
 // Afficher les catégories sous forme de liens cliquables
 function afficher_categories_au_desus_du_titre()
@@ -207,3 +232,49 @@ function banner_image_script()
 <?php
     endif;
 }
+
+/**
+ * Redirection 301 de la page boutique (/boutique) vers l'accueil.
+ *
+ * La boutique n'est pas exposée dans la navigation : l'entrée dans le catalogue
+ * se fait par /licences et les catégories produit. Les archives de catégories,
+ * d'étiquettes et la recherche ne sont pas concernées.
+ *
+ * Filtre `konoba_redirect_shop_to_home` pour désactiver ponctuellement.
+ */
+function konoba_redirect_shop_to_home()
+{
+    if (is_admin() || wp_doing_ajax() || (defined('REST_REQUEST') && REST_REQUEST)) {
+        return;
+    }
+
+    if (!function_exists('is_shop') || !is_shop()) {
+        return;
+    }
+
+    // is_shop() est aussi vrai sur une recherche limitée aux produits
+    // (?s=...&post_type=product) et sur les flux : on les laisse passer.
+    if (is_search() || is_feed()) {
+        return;
+    }
+
+    // Les catégories et étiquettes produit ne sont pas is_shop() : elles restent intactes.
+    if (!apply_filters('konoba_redirect_shop_to_home', true)) {
+        return;
+    }
+
+    wp_safe_redirect(home_url('/'), 301);
+    exit;
+}
+add_action('template_redirect', 'konoba_redirect_shop_to_home');
+
+/**
+ * La boutique redirigeant vers l'accueil, les liens « retour au catalogue »
+ * pointent vers la liste des licences, qui est la vraie entrée du catalogue.
+ */
+function konoba_catalog_url()
+{
+    return home_url('/licences/');
+}
+
+add_filter('woocommerce_return_to_shop_redirect', 'konoba_catalog_url');

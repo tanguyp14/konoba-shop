@@ -1,5 +1,7 @@
 (function ($) {
-  $(window).on("load", function () {
+  // Init au DOM ready (et non au window load) : les éléments data-aos restent
+  // invisibles tant qu'AOS n'est pas initialisé, ce qui retardait fortement le LCP.
+  $(function () {
     AOS.init();
   });
   $("document").ready(function () {
@@ -19,7 +21,7 @@
     });
 
     function toggleHeaderMenus() {
-      if ($(window).width() < 1324) {
+      if (window.matchMedia("(max-width: 1323px)").matches) {
         $(".site-header-mobile").removeClass("hidden");
         $(".site-header").addClass("hidden");
         $("sub-header").removeClass("hidden");

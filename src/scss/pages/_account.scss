@@ -746,15 +746,15 @@ $konoba-border: rgba(38, 38, 38, 0.1);
         color: rgba(38, 38, 38, 0.55);
     }
 
-    /* Aperçu des précommandes */
-    &__preorders {
+    /* Aperçu des réservations */
+    &__reservations {
         border: 1px solid $konoba-border;
         border-radius: 18px;
         padding: 22px;
         margin-bottom: 26px;
     }
 
-    &__preorders-head {
+    &__reservations-head {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -782,7 +782,7 @@ $konoba-border: rgba(38, 38, 38, 0.1);
         }
     }
 
-    &__preorders-list {
+    &__reservations-list {
         list-style: none;
         margin: 0;
         padding: 0;
@@ -808,12 +808,12 @@ $konoba-border: rgba(38, 38, 38, 0.1);
         }
     }
 
-    &__preorder-name {
+    &__reservation-name {
         font-weight: 700;
         flex: 1 1 auto;
     }
 
-    &__preorder-meta {
+    &__reservation-meta {
         font-size: 13px;
         color: rgba(38, 38, 38, 0.6);
         white-space: nowrap;
@@ -869,7 +869,7 @@ $konoba-border: rgba(38, 38, 38, 0.1);
     }
 }
 
-/* Précommandes (plugin TYLT) -------------------------------------------- */
+/* Réservations (plugin TYLT) -------------------------------------------- */
 
 .tfp-points {
     display: inline-flex;
@@ -885,59 +885,195 @@ $konoba-border: rgba(38, 38, 38, 0.1);
     }
 }
 
-.tfp-preorders {
-    width: 100%;
-    border-collapse: collapse;
+.tfp-reservations {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
 
-    th,
-    td {
-        text-align: left;
-        padding: 12px 10px;
-        border-bottom: 1px solid $konoba-border;
-        vertical-align: middle;
+    @include breakpoints(md) {
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 20px;
     }
 
-    th {
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: rgba(38, 38, 38, 0.55);
+    &__empty {
+        margin: 0;
+        padding: 22px;
+        border: 1px dashed $konoba-border;
+        border-radius: 18px;
+        text-align: center;
+        color: rgba(38, 38, 38, 0.6);
+    }
+}
+
+/* Une carte = une réservation ouverte */
+.tfp-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+    padding: 18px;
+    border: 1px solid $konoba-border;
+    border-radius: 20px;
+    background: #fff;
+
+    @include breakpoints(sm) {
+        padding: 22px;
     }
 
-    img {
-        border-radius: 10px;
+    &--mine {
+        border-color: rgba(19, 192, 91, 0.45);
+        box-shadow: inset 0 0 0 1px rgba(19, 192, 91, 0.15);
     }
 
-    @include breakpoints(sm, max) {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
+    &--full {
+        opacity: 0.72;
+    }
+
+    &__head {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    &__media {
+        flex: 0 0 auto;
+        width: 72px;
+        height: 72px;
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(38, 38, 38, 0.04);
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+    }
+
+    &__heading {
+        flex: 1 1 auto;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    &__title {
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.25;
+        color: $black;
+        overflow-wrap: anywhere;
+    }
+
+    &__price {
+        margin: 0;
+        font-family: $secondary-font-family;
+        font-size: 20px;
+        color: var(--orange);
+
+        .woocommerce-Price-amount {
+            font-size: inherit;
+        }
+    }
+
+    /* Caractéristiques : 2 colonnes lisibles même sur petit écran */
+    &__meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 14px;
+        margin: 0;
+        padding: 14px 0 0;
+        border-top: 1px solid rgba(38, 38, 38, 0.07);
+    }
+
+    &__meta-item {
+        min-width: 0;
+
+        dt {
+            margin: 0 0 2px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(38, 38, 38, 0.5);
+        }
+
+        dd {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.35;
+            color: $black;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    &__action {
+        margin-top: auto;
+        padding-top: 14px;
+        border-top: 1px solid rgba(38, 38, 38, 0.07);
+    }
+
+    &__full {
+        margin: 0;
+        font-size: 14px;
+        color: rgba(38, 38, 38, 0.6);
+    }
+}
+
+.tfp-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+
+    &--full {
+        background: rgba(38, 38, 38, 0.08);
+        color: rgba(38, 38, 38, 0.65);
     }
 }
 
 .tfp-reserve-form {
     display: flex;
     align-items: center;
-    gap: 8px;
+    flex-wrap: wrap;
+    gap: 10px;
     margin: 0;
+
+    &__label {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: rgba(38, 38, 38, 0.5);
+        flex: 0 0 100%;
+    }
 
     /* Champ et bouton exactement à la même hauteur. */
     input[type="number"],
     .button {
-        height: 46px;
+        height: 48px;
         box-sizing: border-box;
         margin: 0;
         line-height: 1;
     }
 
     input[type="number"] {
-        width: 72px;
+        width: 84px;
+        flex: 0 0 auto;
         padding: 0 10px;
         border: 1px solid $konoba-border;
         border-radius: 12px;
         font-family: $primary-font-family;
-        font-size: 15px;
+        font-size: 16px; /* 16px : évite le zoom auto iOS */
         text-align: center;
 
         &:focus {
@@ -951,15 +1087,17 @@ $konoba-border: rgba(38, 38, 38, 0.1);
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        flex: 1 1 auto;
+        min-width: 140px;
         border-radius: 999px;
         padding: 0 24px;
-        font-size: 14px;
+        font-size: 15px;
     }
 }
 
 .tfp-reserve-hint {
     display: block;
-    margin-top: 6px;
+    margin-top: 8px;
     font-size: 12px;
     color: rgba(38, 38, 38, 0.5);
 }
@@ -969,7 +1107,6 @@ $konoba-border: rgba(38, 38, 38, 0.1);
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    margin-bottom: 8px;
     padding: 5px 12px 5px 8px;
     border-radius: 999px;
     background: rgba(19, 192, 91, 0.12);

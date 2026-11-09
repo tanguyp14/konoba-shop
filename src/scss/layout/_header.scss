@@ -687,3 +687,17 @@ sub-header {
         transform: translateY(0);
     }
 }
+// Affiche le bon header dès le premier rendu (sans attendre le JS) pour éviter le layout shift.
+// Le seuil doit rester synchronisé avec toggleHeaderMenus() dans src/js/app.js.
+@media screen and (max-width: 1323px) {
+    body .site-header {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 1324px) {
+    body .site-header-mobile,
+    body sub-header {
+        display: none;
+    }
+}

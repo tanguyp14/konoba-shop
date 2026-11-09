@@ -298,39 +298,49 @@ if (is_tax('product_cat')) :
 <?php else : ?>
     <?php
     /**
-     * Hook: woocommerce_before_shop_loop.
-     *
-     * @hooked woocommerce_output_all_notices - 10
-     * @hooked woocommerce_result_count - 20
-     * @hooked woocommerce_catalog_ordering - 30
+     * Boutique (is_shop), étiquettes produit et autres archives produit :
+     * même habillage que les catégories — cartes Konoba (template-parts/product/card).
      */
-    do_action('woocommerce_before_shop_loop');
+    ?>
+    <div class="main-parent-category-template tylt-shop-archive">
 
-    woocommerce_product_loop_start();
+        <div class="tylt-shop-header">
+            <h1><?php echo esc_html(woocommerce_page_title(false)); ?></h1>
+        </div>
 
-    if (wc_get_loop_prop('total')) {
-        while (have_posts()) {
-            the_post();
+        <?php
+        /**
+         * Hook: woocommerce_before_shop_loop.
+         *
+         * @hooked woocommerce_output_all_notices - 10
+         * @hooked woocommerce_result_count - 20
+         * @hooked woocommerce_catalog_ordering - 30
+         */
+        do_action('woocommerce_before_shop_loop');
 
-            /**
-             * Hook: woocommerce_shop_loop.
-             */
-            do_action('woocommerce_shop_loop');
+        woocommerce_product_loop_start();
 
-            wc_get_template_part('content', 'product');
+        if (!have_posts()) {
+            echo '<h2 class="empty_message">Aucun produit trouvé.</h2>';
         }
-    }
 
-    woocommerce_product_loop_end();
+        while (have_posts()) : the_post();
+            $time = ($aos_index % 5) * 100;
+            set_query_var('time', $time);
+            get_template_part('template-parts/product/card');
+            $aos_index++;
+        endwhile;
 
-    /**
-     * Hook: woocommerce_after_shop_loop.
-     *
-     * @hooked woocommerce_pagination - 10
-     */
-    do_action('woocommerce_after_shop_loop'); ?>
+        woocommerce_product_loop_end();
+
+        /**
+         * Hook: woocommerce_after_shop_loop.
+         *
+         * @hooked woocommerce_pagination - 10
+         */
+        do_action('woocommerce_after_shop_loop');
+        ?>
+    </div>
 <?php endif; ?>
-
-
 
 <?php get_footer('shop'); ?>

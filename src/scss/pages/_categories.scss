@@ -106,3 +106,74 @@
         }
     }
 }
+/* Archive boutique / étiquettes produit ---------------------------------- */
+
+.tylt-shop-archive {
+
+    .tylt-shop-header {
+        width: 100%;
+        height: 140px;
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+        border-radius: 15px;
+        background: linear-gradient(45deg, rgba($black, 0.8), rgba($black, 0));
+
+        @include breakpoints(sm, max) {
+            height: 110px;
+            background: linear-gradient(0deg, rgba($black, 0.8), rgba($black, 0));
+            padding: 15px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.5em;
+            text-align: left;
+            color: $tylt-blue;
+
+            @include breakpoints(sm, max) {
+                font-size: 1.1em;
+            }
+        }
+    }
+
+    /* Barre WooCommerce : nombre de résultats + tri */
+    .woocommerce-result-count,
+    .woocommerce-ordering {
+        margin: 20px 0 0;
+    }
+
+    .woocommerce-result-count {
+        float: none;
+        font-size: 14px;
+        color: rgba($black, 0.6);
+    }
+
+    .woocommerce-ordering {
+        float: none;
+
+        select {
+            max-width: 100%;
+            height: 44px;
+            padding: 0 12px;
+            border: 1px solid rgba($black, 0.15);
+            border-radius: 12px;
+            background-color: $white;
+            font-family: $primary-font-family;
+            font-size: 14px;
+        }
+    }
+
+    @include breakpoints(sm) {
+        .woocommerce-result-count,
+        .woocommerce-ordering {
+            display: inline-flex;
+            align-items: center;
+            vertical-align: middle;
+        }
+
+        .woocommerce-ordering {
+            float: right;
+        }
+    }
+}

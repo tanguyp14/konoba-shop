@@ -8,7 +8,7 @@ $time = get_query_var('time');
             <div class="tylt_featured_product">Nouveauté</div>
         <?php endif; ?>
         <?php if (has_term('precommande', 'product_tag', $product->get_id())) : ?>
-            <div class="tylt_pre_order">Précommande</div>
+            <div class="tylt_pre_order">Réservation</div>
         <?php endif; ?>
     </div>
     <a href="<?php echo get_permalink(); ?>">

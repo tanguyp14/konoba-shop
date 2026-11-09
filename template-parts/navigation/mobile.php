@@ -48,12 +48,17 @@ $licence_categories = tylt_get_licence_nav_categories();
         <div class="mobile-nav-categories">
             <?php foreach ($licence_categories as $term) :
                 $thumbnail_id = get_term_meta($term->term_id, 'thumbnail_id', true);
-                $image        = $thumbnail_id ? wp_get_attachment_url($thumbnail_id) : '';
                 $term_link    = get_term_link($term);
             ?>
                 <a href="<?php echo esc_url($term_link); ?>" class="mobile-nav-categories__card">
-                    <?php if ($image) : ?>
-                        <img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr($term->name); ?>">
+                    <?php // Menu fermé par défaut : lazy-load pour ne pas télécharger ces images sur chaque page ?>
+                    <?php if ($thumbnail_id) : ?>
+                        <?php echo wp_get_attachment_image($thumbnail_id, 'medium', false, array(
+                            'alt'      => $term->name,
+                            'loading'  => 'lazy',
+                            'decoding' => 'async',
+                            'sizes'    => '(max-width: 600px) 50vw, 300px',
+                        )); ?>
                     <?php endif; ?>
                     <h2><?php echo esc_html($term->name); ?></h2>
                 </a>

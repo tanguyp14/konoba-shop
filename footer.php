@@ -67,9 +67,11 @@
         <span class="cpr">© <?php echo date('Y'); ?> <?php bloginfo('name'); ?> -
             <a href="/mentions-legales">Mentions légales</a> -
             <a href="/cgv">CGV</a> -
-            <a href="/rgpd">RGPD</a> - Conception site : <a href="https://le-tengu.fr" target="_blank">tylt</a>
+            <a href="/rgpd">RGPD</a> - Conception site : <a href="https://tanguy-pinel.com" target="_blank">tylt</a>
         </span>
     </div>
 </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 <?php wp_footer(); ?>

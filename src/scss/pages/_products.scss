@@ -87,6 +87,25 @@
           width: 100%;
           font-family: $primary-font-family;
           line-height: 2em;
+
+          // Le reset supprime les marges des <p> : on les rétablit pour garder la mise en page
+          p,
+          ul,
+          ol,
+          h2,
+          h3,
+          h4 {
+            margin-bottom: 1em;
+          }
+
+          ul,
+          ol {
+            margin-left: 1.5em;
+          }
+
+          > :last-child {
+            margin-bottom: 0;
+          }
         }
 
         .stock {

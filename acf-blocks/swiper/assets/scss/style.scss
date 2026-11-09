@@ -15,15 +15,20 @@ $transition-slider : transform 0.5s cubic-bezier(0.5, 5, 0.5, -1), opacity 0.2s 
 
     img {
         width: 100%;
+        height: auto;
         border-radius: 0px;
     }
 
-    .swiper {
-        visibility: hidden;
+    picture {
+        display: contents;
+    }
+
+    // Avant l'init de slick : seul le premier slide est affiché (pas de saut de mise en page)
+    .swiper:not(.slick-initialized) .slide:not(:first-child) {
         display: none;
     }
 
-    .slide.slick-slide {
+    .slide {
         a {
             display: grid;
             grid-template-columns: auto 32.5%;
