@@ -4,6 +4,11 @@
   $(function () {
     AOS.init();
   });
+  // Contenu injecté après l'init (ex. bloc panier WooCommerce rendu en JS) :
+  // on relance AOS une fois la page chargée pour qu'il soit animé et visible.
+  $(window).on("load", function () {
+    AOS.refreshHard();
+  });
   $("document").ready(function () {
     document.querySelectorAll(".custom-description").forEach((container) => {
       let brs = container.querySelectorAll("br");
@@ -15,6 +20,13 @@
     });
 
     $(".button_menu_mobile").on("click", function () {
+      // Charge les images du menu mobile à la première ouverture (voir navigation/mobile.php)
+      $("menu-header img[data-src]").each(function () {
+        if (this.dataset.srcset) this.srcset = this.dataset.srcset;
+        this.src = this.dataset.src;
+        this.removeAttribute("data-src");
+        this.removeAttribute("data-srcset");
+      });
       $(this).toggleClass("open");
       $("menu-header").toggleClass("open");
       $("#content").toggleClass("open");

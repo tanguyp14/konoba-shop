@@ -5,6 +5,7 @@ require_once 'inc-functions/register-styles.php';
 require_once 'inc-functions/register-scripts.php';
 require_once 'inc-functions/acf-options-page.php';
 require_once 'inc-functions/icons.php';
+require_once 'inc-functions/cart.php';
 
 // Autoriser svg 
 function autoriser_svg_upload($mimes) {

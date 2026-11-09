@@ -18,7 +18,8 @@ function tylt_scripts()
 		wp_enqueue_script('slick-js',  get_stylesheet_directory_uri() . '/dist/vendors/slick/js/slick.min.js', array('jquery'), false, true);
 	} else {
 		wp_enqueue_script('aos-js',  get_stylesheet_directory_uri() . '/dist/vendors/aos/aos.js', array(), false, true);
-		wp_enqueue_script('app-scripts', get_stylesheet_directory_uri() . '/dist/js/app.min.js', array('jquery', 'aos-js'), false, true);
+		// Version = date de modification du fichier : le cache navigateur est invalidé à chaque build
+		wp_enqueue_script('app-scripts', get_stylesheet_directory_uri() . '/dist/js/app.min.js', array('jquery', 'aos-js'), @filemtime(get_stylesheet_directory() . '/dist/js/app.min.js'), true);
 		wp_enqueue_script('slick-js',  get_stylesheet_directory_uri() . '/dist/vendors/slick/js/slick.min.js', array('jquery'), false, true);
 	}
 }

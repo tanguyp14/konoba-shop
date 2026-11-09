@@ -7,7 +7,7 @@
   }
 }
 
-// Merriweather Sans est chargée via wp_enqueue_style (inc-functions/register-styles.php)
+// Merriweather Sans est auto-hébergée : @font-face dans src/scss/main.scss
 // Font Family
 $primary-font-family: "Merriweather Sans", sans-serif;
 $secondary-font-family: "Avega", sans-serif;

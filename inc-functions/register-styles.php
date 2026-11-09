@@ -11,9 +11,9 @@ function tylt_styles()
 	wp_dequeue_style('wp-block-library');
 	wp_dequeue_style('wp-block-library-theme');
 
-	// Source Sans Pro (Storefront) n'est pas utilisée : le thème force Merriweather Sans
+	// Source Sans Pro (Storefront) n'est pas utilisée : le thème force Merriweather Sans,
+	// auto-hébergée dans dist/fonts (@font-face dans src/scss/main.scss)
 	wp_dequeue_style('storefront-fonts');
-	wp_enqueue_style('tylt-fonts', 'https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap', array(), null);
 
 	// Carte Leaflet du footer : CSS chargée sans bloquer le rendu (voir tylt_async_style_tag)
 	wp_enqueue_style('leaflet', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', array(), null);
@@ -25,7 +25,8 @@ function tylt_styles()
 		wp_enqueue_style('slick-theme-css',  get_stylesheet_directory_uri() . '/dist/vendors/slick/css/slick-theme.css');
 		wp_enqueue_style('app-styles',  get_stylesheet_directory_uri() . '/dist/css/main.css');
 	} else {
-		wp_enqueue_style('app-styles',  get_stylesheet_directory_uri() . '/dist/css/main.min.css');
+		// Version = date de modification du fichier : le cache navigateur est invalidé à chaque build
+		wp_enqueue_style('app-styles',  get_stylesheet_directory_uri() . '/dist/css/main.min.css', array(), @filemtime(get_stylesheet_directory() . '/dist/css/main.min.css'));
 		wp_enqueue_style('aos-css',  get_stylesheet_directory_uri() . '/dist/vendors/aos/aos.css');
 		wp_enqueue_style('slick-css',  get_stylesheet_directory_uri() . '/dist/vendors/slick/css/slick.css');
 		wp_enqueue_style('slick-theme-css',  get_stylesheet_directory_uri() . '/dist/vendors/slick/css/slick-theme.css');
@@ -43,12 +44,11 @@ function tylt_async_style_tag($tag, $handle)
 	return $tag;
 }
 
-// Preconnect / preload des polices pour accélérer le premier affichage
+// Preload des polices auto-hébergées pour accélérer le premier affichage
 add_action('wp_head', 'tylt_font_hints', 1);
 function tylt_font_hints()
 {
-	echo '<link rel="preconnect" href="https://fonts.googleapis.com">' . "\n";
-	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";
+	echo '<link rel="preload" href="' . esc_url(get_stylesheet_directory_uri() . '/dist/fonts/MerriweatherSans-Regular-latin.woff2') . '" as="font" type="font/woff2" crossorigin>' . "\n";
 	echo '<link rel="preload" href="' . esc_url(get_stylesheet_directory_uri() . '/dist/fonts/Avega-Italic.woff2') . '" as="font" type="font/woff2" crossorigin>' . "\n";
 }
 

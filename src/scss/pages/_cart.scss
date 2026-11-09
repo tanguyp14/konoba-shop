@@ -2,47 +2,551 @@
     max-width: 100vw;
 }
 
+/* ==========================================================================
+   Page panier (bloc WooCommerce « Panier ») — skin aligné sur l'espace client
+   Les variables $konoba-* viennent de pages/_account.scss (importé avant).
+   ========================================================================== */
+
 .woocommerce-cart {
-    #primary {
+
+    /* Décoller le contenu du menu fixe en haut de page (comme Mon compte). */
+    .entry-content {
         max-width: 1400px;
+        margin: 60px auto 80px;
 
-        .product-remove {
-            border-top: 0px solid;
-            a{
-                position: relative;
-                top:0;
-                right: 0;
+        @include breakpoints(sm, max) {
+            margin: 24px auto 40px;
+        }
+    }
+
+    /* Storefront ajoute un padding latéral aux blocs .alignwide : on le neutralise
+       pour que le bandeau et les cartes du panier soient alignés. */
+    .hentry .entry-content .wp-block-woocommerce-cart.alignwide {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .hentry .entry-content .konoba-cart-head.alignwide {
+        padding: 26px;
+
+        @include breakpoints(sm, max) {
+            padding: 20px;
+        }
+    }
+
+    /* Le bloc panier est rendu (et re-rendu, ex. suppression du dernier article) en JS après l'init
+       d'AOS : ses éléments data-aos resteraient à opacity 0. On les affiche sans animation. */
+    .wp-block-woocommerce-cart [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Lien « Modifier » de l'admin sous le bloc */
+    .edit-link {
+        display: block;
+        max-width: 1400px;
+        margin: 0 auto 40px;
+    }
+
+    /* Sur mobile, la barre « Voir mon panier » fait doublon et masque le bouton de commande collant. */
+    @media screen and (max-width: 1323px) {
+        sub-header {
+            display: none !important;
+        }
+    }
+}
+
+/* Bandeau d'en-tête ------------------------------------------------------ */
+
+.konoba-cart-head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 26px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, $black 0%, #3a3a3a 100%);
+    color: $white;
+    margin-bottom: 26px;
+    flex-wrap: wrap;
+
+    @include breakpoints(sm, max) {
+        padding: 20px;
+        gap: 14px;
+        margin-bottom: 18px;
+    }
+
+    h1 {
+        font-family: $secondary-font-family;
+        font-size: 30px;
+        line-height: 1.1;
+        margin: 0 0 4px;
+        color: $white;
+        text-align: left;
+        text-transform: uppercase;
+
+        @include breakpoints(sm, max) {
+            font-size: 24px;
+        }
+    }
+
+    p {
+        margin: 0;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    &__icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 95, 1, 0.2);
+        color: $tylt-jaune;
+        flex: 0 0 auto;
+
+        .konoba-picto {
+            width: 28px;
+            height: 28px;
+        }
+
+        @include breakpoints(sm, max) {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+        }
+    }
+
+    &__text {
+        flex: 1 1 240px;
+    }
+
+    &__link {
+        color: $white;
+        font-size: 13px;
+        text-decoration: underline;
+        white-space: nowrap;
+
+        &:visited {
+            color: $white;
+        }
+
+        @include hover {
+            color: $tylt-jaune;
+        }
+    }
+}
+
+/* Bloc panier ------------------------------------------------------------ */
+
+.wp-block-woocommerce-cart.wc-block-cart {
+    font-family: $primary-font-family;
+    color: $black;
+
+    /* Disposition : articles + récapitulatif côte à côte, empilés en dessous de 960px */
+    .wc-block-components-sidebar-layout {
+        gap: 26px;
+        flex-wrap: nowrap;
+        margin: 0;
+
+        &.is-medium,
+        &.is-small,
+        &.is-mobile {
+            flex-wrap: wrap;
+        }
+    }
+
+    .wc-block-cart__main,
+    .wc-block-cart__sidebar {
+        background: $white;
+        border-radius: $konoba-card-radius;
+        box-shadow: $konoba-shadow;
+        padding: 30px;
+        margin: 0;
+        box-sizing: border-box;
+
+        @include breakpoints(sm, max) {
+            padding: 20px 18px;
+        }
+    }
+
+    .wc-block-cart__main {
+        flex: 1 1 auto;
+        width: auto;
+        align-self: flex-start;
+    }
+
+    .wc-block-cart__sidebar {
+        flex: 0 0 380px;
+        width: 380px;
+        align-self: flex-start;
+    }
+
+    .wc-block-components-sidebar-layout.is-medium,
+    .wc-block-components-sidebar-layout.is-small,
+    .wc-block-components-sidebar-layout.is-mobile {
+        .wc-block-cart__main,
+        .wc-block-cart__sidebar {
+            flex: 1 1 100%;
+            width: 100%;
+        }
+    }
+
+    /* En-têtes du tableau et titre du récapitulatif : style « étiquette » du compte */
+    .wc-block-cart-items__header,
+    .wc-block-cart__totals-title {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(38, 38, 38, 0.55);
+    }
+
+    .wc-block-cart__totals-title {
+        display: block;
+        text-align: left;
+        padding: 0 0 14px;
+        margin: 0;
+        color: var(--orange);
+    }
+
+    /* Lignes d'articles */
+    .wc-block-cart-items {
+        margin: 0;
+        border: 0;
+
+        th,
+        td {
+            border: 0;
+            background: transparent;
+        }
+
+        .wc-block-cart-items__header th {
+            padding: 0 0 14px;
+            border-bottom: 1px solid $konoba-border;
+        }
+    }
+
+    .wc-block-cart-items__row {
+        border: 0;
+        border-bottom: 1px solid $konoba-border;
+
+        &:last-child {
+            border-bottom: 0;
+        }
+
+        td {
+            padding-top: 22px;
+            padding-bottom: 22px;
+            vertical-align: top;
+        }
+    }
+
+    .wc-block-cart-items__header-image,
+    .wc-block-cart-item__image {
+        width: 96px;
+
+        @include breakpoints(sm, max) {
+            width: 72px;
+        }
+    }
+
+    /* Mobile / tablette : grille explicite image | produit | total (évite la colonne implicite en débord) */
+    .wc-block-components-sidebar-layout.is-small,
+    .wc-block-components-sidebar-layout.is-mobile {
+        .wc-block-cart-items__row {
+            grid-template-columns: 72px minmax(0, 1fr) auto;
+            column-gap: 14px;
+        }
+
+        .wc-block-cart-item__image {
+            grid-column: 1;
+            padding-right: 0;
+        }
+
+        .wc-block-cart-item__product {
+            grid-column: 2;
+        }
+
+        .wc-block-cart-item__total {
+            grid-column: 3;
+            grid-row: 1;
+            text-align: right;
+        }
+    }
+
+    .wc-block-cart-item__image {
+        a {
+            display: block;
+            padding: 8px;
+            border-radius: 16px;
+            background: rgba(38, 38, 38, 0.03);
+            border: 1px solid $konoba-border;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            height: auto;
+            aspect-ratio: 1;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+    }
+
+    .wc-block-components-product-name {
+        display: inline-block;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 1.3;
+        color: $black;
+        text-decoration: none;
+        margin-bottom: 6px;
+
+        &:visited {
+            color: $black;
+        }
+
+        @include hover {
+            color: var(--orange);
+        }
+    }
+
+    .wc-block-cart-item__prices,
+    .wc-block-components-product-price {
+        color: var(--orange);
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    /* La description courte reprend souvent le nom du produit : on l'atténue */
+    .wc-block-components-product-metadata {
+        font-size: 13px;
+        color: rgba(38, 38, 38, 0.55);
+        margin: 4px 0 0;
+
+        p {
+            margin: 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    }
+
+    .wc-block-cart-item__quantity {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 14px;
+    }
+
+    .wc-block-components-quantity-selector {
+        border: 1px solid $konoba-border;
+        border-radius: 999px;
+        overflow: hidden;
+        width: 116px;
+        margin: 0;
+
+        &::after {
+            display: none; /* bordure par défaut du bloc */
+        }
+
+        input {
+            font-family: $primary-font-family;
+            font-weight: 700;
+            color: $black;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+        }
+
+        .wc-block-components-quantity-selector__button {
+            color: $black;
+            background: transparent;
+            border: 0;
+            opacity: 1;
+
+            &:disabled {
+                opacity: 0.3;
             }
-            @include breakpoints(sm) {
-                border-top: 0px solid transparent;
-                a{
-                    position: absolute;
-                    top: calc(50% - 12.8px);
-                    right: auto;
-                }
+
+            @include hover {
+                color: var(--orange);
+                background: rgba(255, 95, 1, 0.06);
+            }
+        }
+    }
+
+    .wc-block-cart-item__remove-link {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        border: 0;
+        background: rgba(38, 38, 38, 0.05);
+        color: rgba(38, 38, 38, 0.6);
+        transition: background 0.2s ease, color 0.2s ease;
+
+        svg {
+            fill: currentColor;
+        }
+
+        @include hover {
+            background: rgba(255, 95, 1, 0.12);
+            color: var(--orange);
+        }
+    }
+
+    .wc-block-cart-item__total {
+        font-weight: 700;
+        font-size: 16px;
+        color: $black;
+    }
+
+    /* Récapitulatif */
+    .wc-block-components-totals-wrapper {
+        border-top: 1px solid $konoba-border;
+        padding: 14px 0;
+
+        &:first-of-type {
+            border-top: 0;
+        }
+    }
+
+    .wc-block-components-totals-item__label {
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .wc-block-components-totals-item__description,
+    .wc-block-components-totals-shipping__via {
+        font-size: 12px;
+        color: rgba(38, 38, 38, 0.55);
+    }
+
+    .wc-block-components-panel__button {
+        font-weight: 700;
+        font-size: 14px;
+        color: $black;
+
+        @include hover {
+            color: var(--orange);
+        }
+    }
+
+    /* Champ code promo */
+    .wc-block-components-totals-coupon__form {
+        gap: 10px;
+
+        .wc-block-components-text-input input {
+            border: 1px solid $konoba-border;
+            border-radius: 14px;
+            background: rgba(38, 38, 38, 0.02);
+            font-family: $primary-font-family;
+
+            &:focus {
+                border-color: var(--orange);
+                box-shadow: 0 0 0 3px rgba(255, 95, 1, 0.15);
             }
         }
 
-        input,
-        button {
-            border-radius: $border-radius;
-        }
+        .wc-block-components-totals-coupon__button {
+            border-radius: 999px;
+            background: $black;
+            color: $white;
+            font-weight: 700;
+            border: 0;
 
-        tr {
-            border: 3px solid grey;
-            td {
-                a,
-                a:visited {
-                    color: $tylt-blue;
-                }
-
-                &.product-quantity {
-                    input {
-                        border-radius: $border-radius;
-                        color: $tylt-blue;
-                    }
-                }
+            @include hover {
+                background: var(--orange);
             }
         }
+    }
+
+    .wc-block-components-totals-footer-item {
+        .wc-block-components-totals-item__label {
+            font-size: 16px;
+        }
+
+        .wc-block-components-totals-item__value {
+            font-family: $secondary-font-family;
+            font-size: 26px;
+            line-height: 1;
+            color: var(--orange);
+        }
+    }
+
+    /* Bouton « Valider la commande » = .konoba-btn */
+    .wc-block-cart__submit-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 54px;
+        padding: 14px 28px;
+        border: 2px solid var(--orange);
+        border-radius: 999px;
+        background: var(--orange);
+        color: $white;
+        font-family: $primary-font-family;
+        font-weight: 700;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background 0.25s ease, border-color 0.25s ease;
+
+        .wc-block-components-button__text {
+            text-decoration: none;
+        }
+
+        @include hover {
+            background: $black;
+            border-color: $black;
+            color: $white;
+        }
+    }
+
+    .wc-block-cart__payment-options {
+        margin-top: 8px;
+    }
+
+    /* Barre de commande collante en bas d'écran (mobile) */
+    .wc-block-cart__submit-container--sticky {
+        background: $white;
+        padding: 12px 16px;
+        box-shadow: 0 -8px 30px rgba(38, 38, 38, 0.12);
+        border-radius: 20px 20px 0 0;
+
+        &::before {
+            display: none;
+        }
+    }
+}
+
+/* Panier vide ------------------------------------------------------------- */
+
+.wp-block-woocommerce-empty-cart-block {
+    background: $white;
+    border-radius: $konoba-card-radius;
+    box-shadow: $konoba-shadow;
+    padding: 44px 30px;
+    text-align: center;
+
+    @include breakpoints(sm, max) {
+        padding: 30px 20px;
+    }
+
+    .wc-block-cart__empty-cart__title {
+        font-family: $secondary-font-family;
+        font-size: 26px;
+        color: $black;
+    }
+
+    h2 {
+        font-family: $secondary-font-family;
+        color: $black;
     }
 }

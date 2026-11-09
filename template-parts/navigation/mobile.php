@@ -51,14 +51,18 @@ $licence_categories = tylt_get_licence_nav_categories();
                 $term_link    = get_term_link($term);
             ?>
                 <a href="<?php echo esc_url($term_link); ?>" class="mobile-nav-categories__card">
-                    <?php // Menu fermé par défaut : lazy-load pour ne pas télécharger ces images sur chaque page ?>
+                    <?php // Menu fermé par défaut : l'image n'est chargée qu'à l'ouverture du menu (src → data-src, voir app.js) ?>
                     <?php if ($thumbnail_id) : ?>
-                        <?php echo wp_get_attachment_image($thumbnail_id, 'medium', false, array(
-                            'alt'      => $term->name,
-                            'loading'  => 'lazy',
-                            'decoding' => 'async',
-                            'sizes'    => '(max-width: 600px) 50vw, 300px',
-                        )); ?>
+                        <?php echo str_replace(
+                            array(' src=', ' srcset='),
+                            array(' data-src=', ' data-srcset='),
+                            wp_get_attachment_image($thumbnail_id, 'medium', false, array(
+                                'alt'      => $term->name,
+                                'loading'  => 'lazy',
+                                'decoding' => 'async',
+                                'sizes'    => '(max-width: 600px) 50vw, 300px',
+                            ))
+                        ); ?>
                     <?php endif; ?>
                     <h2><?php echo esc_html($term->name); ?></h2>
                 </a>
